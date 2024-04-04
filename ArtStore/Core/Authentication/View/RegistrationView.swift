@@ -38,7 +38,9 @@ struct RegistrationView: View {
             .padding(.all, 15.0)
             
             Button(action: {
-                        print("Button was tapped")
+                Task{
+                    try await viewModel.createUser(withEmail: email, password: password, fullname: fullname)
+                }
                     }) {
                         Text("Sign Up! ")
                             .fontWeight(.semibold)
