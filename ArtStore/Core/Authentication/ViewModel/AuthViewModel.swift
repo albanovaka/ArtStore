@@ -9,16 +9,17 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 
+@MainActor
 class AuthViewModel: ObservableObject{
     @Published var userSession: FirebaseAuth.User?
     @Published var currentUser: User?
     
     init(){
-        
+        self.userSession = Auth.auth().currentUser
     }
     
     func signIn(withEmail: String, password: String) async throws{
-        
+        print("jhghgfhg")
     }
     
     func createUser(withEmail email: String, password: String, fullname: String) async throws{

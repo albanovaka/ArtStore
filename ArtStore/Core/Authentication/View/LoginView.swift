@@ -13,46 +13,48 @@ struct LoginView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
-        VStack{
-            Image("tree")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 200, height: 200)
-            
-            VStack(spacing: 24){
-                InputView(text: $email, title: "Email Address", placeholder: "name@example.com")
-                    .autocapitalization(.none)
-                InputView(text: $password,
-                          title: "Password",
-                          placeholder: "Enter your password", isSecureField: true)
-            }
-            .padding(.all, 15.0)
-            
-            Button(action: {
-                Task{
-                    try await viewModel.signIn(withEmail:email,password: password)
+        NavigationView{
+            VStack{
+                Image("tree")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 200, height: 200)
+                
+                VStack(spacing: 24){
+                    InputView(text: $email, title: "Email Address", placeholder: "name@example.com")
+                        .autocapitalization(.none)
+                    InputView(text: $password,
+                              title: "Password",
+                              placeholder: "Enter your password", isSecureField: true)
                 }
-                    }) {
-                        Text("Sign In")
-                            .fontWeight(.semibold)
-                            .font(.title)
-                            .padding(20)
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(60)
+                .padding(.all, 15.0)
+                
+                Button(action: {
+                    Task{
+                        try await viewModel.signIn(withEmail:email,password: password)
                     }
-            Spacer()
-            NavigationLink {
-                RegistrationView()
-                    .navigationBarBackButtonHidden(true)
-            } label: {
-                HStack {
-                    Text ("Don't have an account?")
-                    Text ("Sign up")
-                        .fontWeight(.bold)
-                        .font(.system(size: 23))
+                        }) {
+                            Text("Sign In")
+                                .fontWeight(.semibold)
+                                .font(.title)
+                                .padding(20)
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(60)
+                        }
+                Spacer()
+                NavigationLink {
+                    RegistrationView()
+                        .navigationBarBackButtonHidden(true)
+                } label: {
+                    HStack {
+                        Text ("Don't have an account?")
+                        Text ("Sign up")
+                            .fontWeight(.bold)
+                            .font(.system(size: 23))
+                    }
+                    .foregroundColor(.indigo)
                 }
-                .foregroundColor(.indigo)
             }
         }
     }
