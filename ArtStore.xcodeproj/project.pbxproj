@@ -17,11 +17,11 @@
 		9CB71F032BBEF5A0001AF1A0 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB71F022BBEF5A0001AF1A0 /* ProfileView.swift */; };
 		9CB71F052BBF0298001AF1A0 /* SettingsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB71F042BBF0298001AF1A0 /* SettingsRowView.swift */; };
 		9CB71F072BBF08D6001AF1A0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB71F062BBF08D6001AF1A0 /* User.swift */; };
-		9CB71F0B2BBF2289001AF1A0 /* GoogleService-Info-.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CB71F0A2BBF2289001AF1A0 /* GoogleService-Info-.plist */; };
 		9CB71F0E2BBF24AE001AF1A0 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9CB71F0D2BBF24AE001AF1A0 /* FirebaseAuth */; };
 		9CB71F102BBF24AE001AF1A0 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 9CB71F0F2BBF24AE001AF1A0 /* FirebaseAuthCombine-Community */; };
 		9CB71F122BBF24AE001AF1A0 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 9CB71F112BBF24AE001AF1A0 /* FirebaseFirestore */; };
 		9CB71F142BBF24AE001AF1A0 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9CB71F132BBF24AE001AF1A0 /* FirebaseFirestoreSwift */; };
+		9CB71F182BBF292D001AF1A0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CB71F172BBF292D001AF1A0 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +36,7 @@
 		9CB71F022BBEF5A0001AF1A0 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		9CB71F042BBF0298001AF1A0 /* SettingsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowView.swift; sourceTree = "<group>"; };
 		9CB71F062BBF08D6001AF1A0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		9CB71F0A2BBF2289001AF1A0 /* GoogleService-Info-.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-.plist"; sourceTree = "<group>"; };
+		9CB71F172BBF292D001AF1A0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,12 +73,12 @@
 		9CB71EE32BBDFFA0001AF1A0 /* ArtStore */ = {
 			isa = PBXGroup;
 			children = (
-				9CB71F0A2BBF2289001AF1A0 /* GoogleService-Info-.plist */,
 				9CB71EF62BBE0310001AF1A0 /* Model */,
 				9CB71EF52BBE02FF001AF1A0 /* Core */,
 				9CB71EF42BBE02F1001AF1A0 /* Components */,
 				9CB71EF32BBE02EA001AF1A0 /* App */,
 				9CB71EE82BBDFFA1001AF1A0 /* Assets.xcassets */,
+				9CB71F172BBF292D001AF1A0 /* GoogleService-Info.plist */,
 				9CB71EEA2BBDFFA1001AF1A0 /* Preview Content */,
 			);
 			path = ArtStore;
@@ -221,7 +221,7 @@
 			files = (
 				9CB71EEC2BBDFFA1001AF1A0 /* Preview Assets.xcassets in Resources */,
 				9CB71EE92BBDFFA1001AF1A0 /* Assets.xcassets in Resources */,
-				9CB71F0B2BBF2289001AF1A0 /* GoogleService-Info-.plist in Resources */,
+				9CB71F182BBF292D001AF1A0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

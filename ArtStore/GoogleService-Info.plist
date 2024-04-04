@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>416519844116-pa43ahpr170vei13lpihj3er0d2dmrb6.apps.googleusercontent.com</string>
+	<string>30316807647-0r1nf0rf4k0u84m3upie0vsase8mjflk.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.416519844116-pa43ahpr170vei13lpihj3er0d2dmrb6</string>
+	<string>com.googleusercontent.apps.30316807647-0r1nf0rf4k0u84m3upie0vsase8mjflk</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCwYpKxmO3K018-TLtn4xsmKvCX_Cfp-OI</string>
+	<string>AIzaSyD4Z2JnZMhFQJO2S5rzaI7-U2uzuu9Whyg</string>
 	<key>GCM_SENDER_ID</key>
-	<string>416519844116</string>
+	<string>30316807647</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.AlbanovaKa.ArtStore</string>
 	<key>PROJECT_ID</key>
-	<string>treeartsyiosstore</string>
+	<string>art-s-f96d1</string>
 	<key>STORAGE_BUCKET</key>
-	<string>treeartsyiosstore.appspot.com</string>
+	<string>art-s-f96d1.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:416519844116:ios:24983e288aca4a340f5201</string>
+	<string>1:30316807647:ios:a8c2dd1067ecbbda77b06a</string>
 </dict>
 </plist>
