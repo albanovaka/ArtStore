@@ -16,6 +16,7 @@
 		9CB71F012BBE179F001AF1A0 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB71F002BBE179F001AF1A0 /* RegistrationView.swift */; };
 		9CB71F032BBEF5A0001AF1A0 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB71F022BBEF5A0001AF1A0 /* ProfileView.swift */; };
 		9CB71F052BBF0298001AF1A0 /* SettingsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB71F042BBF0298001AF1A0 /* SettingsRowView.swift */; };
+		9CB71F072BBF08D6001AF1A0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB71F062BBF08D6001AF1A0 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		9CB71F002BBE179F001AF1A0 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		9CB71F022BBEF5A0001AF1A0 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		9CB71F042BBF0298001AF1A0 /* SettingsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowView.swift; sourceTree = "<group>"; };
+		9CB71F062BBF08D6001AF1A0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 		9CB71EF62BBE0310001AF1A0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9CB71F062BBF08D6001AF1A0 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 				9CB71EFD2BBE0638001AF1A0 /* InputView.swift in Sources */,
 				9CB71EE72BBDFFA0001AF1A0 /* ContentView.swift in Sources */,
 				9CB71EE52BBDFFA0001AF1A0 /* ArtStoreApp.swift in Sources */,
+				9CB71F072BBF08D6001AF1A0 /* User.swift in Sources */,
 				9CB71F032BBEF5A0001AF1A0 /* ProfileView.swift in Sources */,
 				9CB71F012BBE179F001AF1A0 /* RegistrationView.swift in Sources */,
 				9CB71F052BBF0298001AF1A0 /* SettingsRowView.swift in Sources */,
