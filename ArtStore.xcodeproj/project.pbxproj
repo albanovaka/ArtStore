@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C4B3A632BC035AA00C17FA7 /* ItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B3A622BC035AA00C17FA7 /* ItemsViewModel.swift */; };
 		9CB71EE52BBDFFA0001AF1A0 /* ArtStoreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB71EE42BBDFFA0001AF1A0 /* ArtStoreApp.swift */; };
 		9CB71EE72BBDFFA0001AF1A0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB71EE62BBDFFA0001AF1A0 /* ContentView.swift */; };
 		9CB71EE92BBDFFA1001AF1A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CB71EE82BBDFFA1001AF1A0 /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9C4B3A622BC035AA00C17FA7 /* ItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewModel.swift; sourceTree = "<group>"; };
 		9CB71EE12BBDFFA0001AF1A0 /* ArtStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArtStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CB71EE42BBDFFA0001AF1A0 /* ArtStoreApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtStoreApp.swift; sourceTree = "<group>"; };
 		9CB71EE62BBDFFA0001AF1A0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				9CB71EF82BBE03E5001AF1A0 /* Authentication */,
 				9CB71EF92BBE03F4001AF1A0 /* Profile */,
 				9CB71EF72BBE0338001AF1A0 /* Root */,
+				9C4B3A622BC035AA00C17FA7 /* ItemsViewModel.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				9CB71EE72BBDFFA0001AF1A0 /* ContentView.swift in Sources */,
 				9CB71EE52BBDFFA0001AF1A0 /* ArtStoreApp.swift in Sources */,
 				9CB71F072BBF08D6001AF1A0 /* User.swift in Sources */,
+				9C4B3A632BC035AA00C17FA7 /* ItemsViewModel.swift in Sources */,
 				9CB71F032BBEF5A0001AF1A0 /* ProfileView.swift in Sources */,
 				9CB71F012BBE179F001AF1A0 /* RegistrationView.swift in Sources */,
 				9CB71F052BBF0298001AF1A0 /* SettingsRowView.swift in Sources */,
