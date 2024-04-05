@@ -16,6 +16,9 @@ class AuthViewModel: ObservableObject{
     
     init(){
         self.userSession = Auth.auth().currentUser
+        Task{
+            await fetchUser()
+        }
     }
     
     func signIn(withEmail: String, password: String) async throws{
@@ -29,6 +32,7 @@ class AuthViewModel: ObservableObject{
             let user = User(id: result.user.uid, fullname: fullname, email: email)
             let encodedUser = try Firestore.Encoder().encode (user)
             try await Firestore.firestore().collection("user").document(user.id).setData(encodedUser)
+            await fetchUser()
         }catch{
             print("ghfgj")
         }
@@ -42,9 +46,19 @@ class AuthViewModel: ObservableObject{
         
     }
     
-    func fetchUser() async{
-        guard let uid = Auth.auth().currentUser?.uid else {return}
-        let snapshot = try? await Firestore.firestore() .collection("users").document(uid).getDocument()
-        
+    func fetchUser() async {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            print("DEBUG: No user is currently signed in.")
+            return
+        }
+
+        do {
+            let snapshot = try await Firestore.firestore().collection("user").document(uid).getDocument()
+            self.currentUser = try snapshot.data(as: User.self)
+            print("DEBUG: Current user is \(String(describing: self.currentUser))")
+        } catch {
+            print("DEBUG: An error occurred while fetching user data: \(error)")
+        }
     }
+
 }
