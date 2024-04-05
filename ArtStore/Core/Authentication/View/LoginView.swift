@@ -42,6 +42,8 @@ struct LoginView: View {
                                 .foregroundColor(.white)
                                 .cornerRadius(60)
                         }
+                        .disabled(!formIsValid)
+                        .opacity(formIsValid ? 1.0 : 0.5)
                 Spacer()
                 NavigationLink {
                     RegistrationView()
@@ -57,6 +59,14 @@ struct LoginView: View {
                 }
             }
         }
+    }
+}
+
+extension LoginView: AuthenticationFormProtocol {
+    var formIsValid: Bool {
+        !email.isEmpty
+        && email.contains ("@")
+        && !password.isEmpty
     }
 }
 

@@ -31,9 +31,26 @@ struct RegistrationView: View {
                 InputView(text: $password,
                           title: "Password",
                           placeholder: "Enter your password", isSecureField: true)
-                InputView(text: $confirmPassword,
-                          title: "Confirm Password",
-                          placeholder: "Confirm your password", isSecureField: true)
+                ZStack(alignment: .trailing){
+                    InputView(text: $confirmPassword,
+                              title: "Confirm Password",
+                              placeholder: "Confirm your password", isSecureField: true)
+                    if !password.isEmpty && !confirmPassword.isEmpty {
+                        if password == confirmPassword {
+                            Image (systemName: "checkmark.circle.fill")
+                                .imageScale (.large)
+                                .fontWeight (.bold)
+                                .foregroundColor(Color(.systemGreen))
+                                .padding(.top, 30)
+                        } else {
+                            Image (systemName: "xmark.circle.fill")
+                                .imageScale (.large)
+                                .fontWeight (.bold)
+                                .foregroundColor(Color(.systemRed))
+                                .padding(.top, 30.0)
+                        }
+                    }
+                }
             }
             .padding(.all, 15.0)
             
@@ -50,6 +67,8 @@ struct RegistrationView: View {
                             .foregroundColor(.white)
                             .cornerRadius(60)
                     }
+                    .disabled(!formIsValid)
+                    .opacity(formIsValid ? 1.0 : 0.5)
             Spacer()
             Button{
                 dismiss()
@@ -65,7 +84,15 @@ struct RegistrationView: View {
         }
     }
 }
-
+extension RegistrationView: AuthenticationFormProtocol {
+    var formIsValid: Bool {
+        !email.isEmpty
+        && email.contains ("@")
+        && !password.isEmpty
+        && !confirmPassword.isEmpty
+        
+    }
+}
 struct RegistrationView_Previews: PreviewProvider {
     static var previews: some View {
         RegistrationView()
