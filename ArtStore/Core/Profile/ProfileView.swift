@@ -51,6 +51,9 @@ struct ProfileView: View {
                 }
             }
         }
+        else{
+            Text("something went wrong")
+        }
     }
 }
 struct ProfileView_Previews: PreviewProvider {
