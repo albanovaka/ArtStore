@@ -17,21 +17,43 @@ struct ItemsGridView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVGrid(columns: columns) {
+                LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(itemsViewModel.items) { item in
                         VStack {
-                            KFImage(URL(string: item.image_url))
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 100, height: 100)
-                                .cornerRadius(10)
-
-                            Text(item.description)
-                                .font(.caption)
-                                .lineLimit(1)
+                            VStack{
+                                if let image = item.image {
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(minWidth: 0, maxWidth: .infinity)       .aspectRatio(1, contentMode: .fit)             .cornerRadius(10)
+                                        .clipped()
+                                } else {
+                                    
+                                    Rectangle()
+                                        .fill(Color.secondary)
+                                        .frame(width: 100, height: 100)
+                                        .cornerRadius(10)
+                                        .overlay(
+                                            Text("Loading...")
+                                                .foregroundColor(.white)
+                                        )
+                                }
+                                Text(item.description)
+                                    .font(.caption)
+                                    .lineLimit(1)
+                                    .frame(maxWidth: .infinity, alignment: .center)
+                                    .padding(.vertical, 8)
+                            }
+                            .padding(.all)
+                            
                         }
+                        .background(Color(hex: "FFF3C7"))
+                        .cornerRadius(10)
+                        .shadow(radius: 5)
+                        .padding(.all, 10.0)
                     }
                 }
+                .padding()
             }
             .navigationTitle("Items")
             .toolbar {
@@ -44,6 +66,7 @@ struct ItemsGridView: View {
             .onAppear {
                 itemsViewModel.fetchItems()
             }
+            .background(Color(hex: "FEC7B4"))
         }
     }
 }

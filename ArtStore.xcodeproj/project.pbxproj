@@ -10,6 +10,8 @@
 		9C4B3A632BC035AA00C17FA7 /* ItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B3A622BC035AA00C17FA7 /* ItemsViewModel.swift */; };
 		9C4B3A662BC0360500C17FA7 /* ItemsGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B3A652BC0360500C17FA7 /* ItemsGridView.swift */; };
 		9C4B3A692BC03C0F00C17FA7 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9C4B3A682BC03C0F00C17FA7 /* Kingfisher */; };
+		9C4B3A6C2BC1B64900C17FA7 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9C4B3A6B2BC1B64900C17FA7 /* FirebaseStorage */; };
+		9C4B3A6E2BC1D1BD00C17FA7 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B3A6D2BC1D1BD00C17FA7 /* UIColor+Extensions.swift */; };
 		9CB71EE52BBDFFA0001AF1A0 /* ArtStoreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB71EE42BBDFFA0001AF1A0 /* ArtStoreApp.swift */; };
 		9CB71EE72BBDFFA0001AF1A0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB71EE62BBDFFA0001AF1A0 /* ContentView.swift */; };
 		9CB71EE92BBDFFA1001AF1A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CB71EE82BBDFFA1001AF1A0 /* Assets.xcassets */; };
@@ -31,6 +33,7 @@
 /* Begin PBXFileReference section */
 		9C4B3A622BC035AA00C17FA7 /* ItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewModel.swift; sourceTree = "<group>"; };
 		9C4B3A652BC0360500C17FA7 /* ItemsGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsGridView.swift; sourceTree = "<group>"; };
+		9C4B3A6D2BC1D1BD00C17FA7 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		9CB71EE12BBDFFA0001AF1A0 /* ArtStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArtStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CB71EE42BBDFFA0001AF1A0 /* ArtStoreApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtStoreApp.swift; sourceTree = "<group>"; };
 		9CB71EE62BBDFFA0001AF1A0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,6 +59,7 @@
 				9CB71F122BBF24AE001AF1A0 /* FirebaseFirestore in Frameworks */,
 				9CB71F142BBF24AE001AF1A0 /* FirebaseFirestoreSwift in Frameworks */,
 				9C4B3A692BC03C0F00C17FA7 /* Kingfisher in Frameworks */,
+				9C4B3A6C2BC1B64900C17FA7 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,11 +75,19 @@
 			path = Items;
 			sourceTree = "<group>";
 		};
+		9C4B3A6A2BC1B64900C17FA7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9CB71ED82BBDFFA0001AF1A0 = {
 			isa = PBXGroup;
 			children = (
 				9CB71EE32BBDFFA0001AF1A0 /* ArtStore */,
 				9CB71EE22BBDFFA0001AF1A0 /* Products */,
+				9C4B3A6A2BC1B64900C17FA7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -122,6 +134,7 @@
 			children = (
 				9CB71EFC2BBE0638001AF1A0 /* InputView.swift */,
 				9CB71F042BBF0298001AF1A0 /* SettingsRowView.swift */,
+				9C4B3A6D2BC1D1BD00C17FA7 /* UIColor+Extensions.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -209,6 +222,7 @@
 				9CB71F112BBF24AE001AF1A0 /* FirebaseFirestore */,
 				9CB71F132BBF24AE001AF1A0 /* FirebaseFirestoreSwift */,
 				9C4B3A682BC03C0F00C17FA7 /* Kingfisher */,
+				9C4B3A6B2BC1B64900C17FA7 /* FirebaseStorage */,
 			);
 			productName = ArtStore;
 			productReference = 9CB71EE12BBDFFA0001AF1A0 /* ArtStore.app */;
@@ -276,6 +290,7 @@
 				9CB71F072BBF08D6001AF1A0 /* User.swift in Sources */,
 				9C4B3A662BC0360500C17FA7 /* ItemsGridView.swift in Sources */,
 				9C4B3A632BC035AA00C17FA7 /* ItemsViewModel.swift in Sources */,
+				9C4B3A6E2BC1D1BD00C17FA7 /* UIColor+Extensions.swift in Sources */,
 				9CB71F032BBEF5A0001AF1A0 /* ProfileView.swift in Sources */,
 				9CB71F012BBE179F001AF1A0 /* RegistrationView.swift in Sources */,
 				9CB71F052BBF0298001AF1A0 /* SettingsRowView.swift in Sources */,
@@ -505,6 +520,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9C4B3A672BC03C0F00C17FA7 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		9C4B3A6B2BC1B64900C17FA7 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9CB71F0C2BBF24AE001AF1A0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 		9CB71F0D2BBF24AE001AF1A0 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
