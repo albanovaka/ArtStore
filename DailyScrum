@@ -8,4 +8,14 @@ April 5th 2024
 3. Need to Figure out:
 - I need to figure out the use of storage in firebase and retrieving images from there to pass to a gridview
 
-
+April 6th 2024
+1. Done/ Not Done since last scrum
+ - User can now sign in using google
+ - After signing up, the user is redirected to the login page
+ 
+ 2.To do until next Scrum:
+ - Tabview has to be set up in the project
+ - Ability to add to cart and favourite items
+ 
+ 3. Need to Figure out:
+ - I need to figure out the ways in which the list in the basket and favourite will be created.
