@@ -44,24 +44,31 @@ struct LoginView: View {
                         }
                         .disabled(!formIsValid)
                         .opacity(formIsValid ? 1.0 : 0.5)
-                Button(action: {
-                    // Your code to call signInGoogle() method goes here.
-                    // If signInGoogle() is an asynchronous method, you will call it like this:
-                    Task {
-                        try await viewModel.signInGoogle()
-                    }
-                    // If signInGoogle() is not an asynchronous method, you will call it directly like this:
-                    // viewModel.signInGoogle()
-                }) {
-                    Text("Sign In with Google")
-                        .fontWeight(.semibold)
-                        .font(.title)
-                        .padding(20)
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(60)
-                }
                 
+                Divider()
+                Button(action: {
+                    // Initiates the sign-in process
+                    Task {
+                        do {
+                            try await viewModel.signInGoogle()
+                        } catch {
+                            print("Error during Google sign-in: \(error.localizedDescription)")
+                        }
+                    }
+                }) {
+                    HStack {
+                        Image("google_button") // Your Google 'G' logo asset
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 80, height: 80) // Adjust the size to your image
+                            .padding(.leading, 10)
+        
+                    }
+                }
+                .foregroundColor(.black) // Set the foreground color to black for the text
+                .padding() // Add padding around the button if needed
+
+
                 Spacer()
                 NavigationLink {
                     RegistrationView()

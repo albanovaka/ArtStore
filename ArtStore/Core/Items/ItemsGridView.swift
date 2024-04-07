@@ -7,7 +7,7 @@
 
 import SwiftUI
 import FirebaseFirestore
-import Kingfisher
+
 
 struct ItemsGridView: View {
     @EnvironmentObject var viewModel: AuthViewModel
@@ -24,8 +24,9 @@ struct ItemsGridView: View {
                                 if let image = item.image {
                                     Image(uiImage: image)
                                         .resizable()
-                                        .scaledToFill()
-                                        .frame(minWidth: 0, maxWidth: .infinity)       .aspectRatio(1, contentMode: .fit)             .cornerRadius(10)
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(minWidth: 0, maxWidth: .infinity)       .aspectRatio(1, contentMode: .fit)
+                                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 150, maxHeight: 150)
                                         .clipped()
                                 } else {
                                     
@@ -43,7 +44,37 @@ struct ItemsGridView: View {
                                     .lineLimit(1)
                                     .frame(maxWidth: .infinity, alignment: .center)
                                     .padding(.vertical, 8)
+                                HStack {
+                                    Button(action: {
+                                        // Handle like action
+                                    }) {
+                                        Image(systemName: "heart")
+                                            .foregroundColor(.white)
+                                                    .padding(10)
+                                                    .background(Circle().fill(Color.gray
+                                                                             ))
+                                                    .overlay(
+                                                        Circle()
+                                                            .stroke(Color.gray, lineWidth: 2))
+                                    }
+                                    .buttonStyle(BorderlessButtonStyle())
+                                    
+                                    Spacer()
+                                    
+                                    Button(action: {
+                                        // Handle add to cart action
+                                    }) {
+                                        Image(systemName: "plus")
+                                            .foregroundColor(.white)
+                                            .padding(10) // Adjust padding to your preference
+                                            .background(Circle().fill(Color(hex: "F7418F")))
+                                    }
+                                    .buttonStyle(BorderlessButtonStyle())
+                                }
+                                
                             }
+                            
+                            
                             .padding(.all)
                             
                         }
@@ -51,11 +82,12 @@ struct ItemsGridView: View {
                         .cornerRadius(10)
                         .shadow(radius: 5)
                         .padding(.all, 10.0)
+                        .frame(minHeight: 300)
                     }
                 }
                 .padding()
             }
-            .navigationTitle("Items")
+           // .navigationTitle("Items")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: ProfileView()) {
@@ -67,6 +99,7 @@ struct ItemsGridView: View {
                 itemsViewModel.fetchItems()
             }
             .background(Color(hex: "FEC7B4"))
+            .foregroundColor(Color(hex: "F7418F"))
         }
     }
 }
