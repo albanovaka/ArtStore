@@ -57,6 +57,7 @@ struct RegistrationView: View {
             Button(action: {
                 Task{
                     try await viewModel.createUser(withEmail: email, password: password, fullname: fullname)
+                    dismiss()
                 }
                     }) {
                         Text("Sign Up! ")
