@@ -44,6 +44,24 @@ struct LoginView: View {
                         }
                         .disabled(!formIsValid)
                         .opacity(formIsValid ? 1.0 : 0.5)
+                Button(action: {
+                    // Your code to call signInGoogle() method goes here.
+                    // If signInGoogle() is an asynchronous method, you will call it like this:
+                    Task {
+                        try await viewModel.signInGoogle()
+                    }
+                    // If signInGoogle() is not an asynchronous method, you will call it directly like this:
+                    // viewModel.signInGoogle()
+                }) {
+                    Text("Sign In with Google")
+                        .fontWeight(.semibold)
+                        .font(.title)
+                        .padding(20)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(60)
+                }
+                
                 Spacer()
                 NavigationLink {
                     RegistrationView()
@@ -69,6 +87,8 @@ extension LoginView: AuthenticationFormProtocol {
         && !password.isEmpty
     }
 }
+
+
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {

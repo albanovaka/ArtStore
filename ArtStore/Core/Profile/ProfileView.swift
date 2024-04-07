@@ -53,6 +53,13 @@ struct ProfileView: View {
         }
         else{
             Text("something went wrong")
+            Button {
+                viewModel.signOut()
+                print(viewModel.$currentUser)
+            } label: {
+                SettingsRowView (imageName: "arrow.left.circle.fill",
+                                 title: "Sign Out", tintColor: .red)
+            }
         }
     }
 }
