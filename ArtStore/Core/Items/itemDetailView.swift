@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct itemDetailView: View {
+    @EnvironmentObject var viewModel: AuthViewModel
     let item: Item
     var body: some View {
         VStack {
@@ -19,6 +20,20 @@ struct itemDetailView: View {
             Text(item.description)
                 .padding()
             // Any other details you want to show about the item
+            Button(action: {
+                print("button tapped")
+            }) {
+                Image(systemName: "heart")
+                    .foregroundColor(.white)
+                            .padding(10)
+                            .background(Circle().fill(Color.gray
+                                                     ))
+                            .overlay(
+                                Circle()
+                                    .stroke(Color.gray, lineWidth: 2))
+            }
+            .buttonStyle(BorderlessButtonStyle())
+            
         }
         .navigationTitle(Text(item.description))
     }

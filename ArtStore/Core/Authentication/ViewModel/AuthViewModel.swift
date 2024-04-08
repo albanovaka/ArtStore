@@ -27,6 +27,34 @@ class AuthViewModel: ObservableObject{
         }
     }
     
+    func addFavorite(itemId: String) {
+        guard let userId = self.userSession?.uid else { return }
+        let userFavoritesRef = Firestore.firestore().collection("user").document(userId).collection("favorites")
+        
+        userFavoritesRef.document(itemId).setData([:]) { error in
+            if let error = error {
+                print("Error adding favorite item: \(error.localizedDescription)")
+            } else {
+                print("Favorite item added successfully.")
+                // Here you may want to fetch the updated favorites and update the UI accordingly
+            }
+        }
+    }
+    
+    func addToBasket(itemId: String, quantity: Int) {
+        guard let userId = self.userSession?.uid else { return }
+        let userBasketRef = Firestore.firestore().collection("user").document(userId).collection("basket")
+        
+        userBasketRef.document(itemId).setData(["quantity": quantity]) { error in
+            if let error = error {
+                print("Error adding item to basket: \(error.localizedDescription)")
+            } else {
+                print("Item added to basket successfully.")
+                // Here you may want to fetch the updated basket and update the UI accordingly
+            }
+        }
+    }
+    
     func signIn(withEmail email: String, password: String) async throws{
         do{
             let result = try await Auth.auth().signIn(withEmail: email, password: password)
@@ -40,7 +68,7 @@ class AuthViewModel: ObservableObject{
     func createUser(withEmail email: String, password: String, fullname: String) async throws{
         do{
             let result = try await Auth.auth().createUser (withEmail: email, password: password)
-            let user = User(id: result.user.uid, fullname: fullname, email: email)
+            let user = User(id: result.user.uid, fullname: fullname, email: email, favorites: [], basket: [])
             let encodedUser = try Firestore.Encoder().encode (user)
             try await Firestore.firestore().collection("user").document(user.id).setData(encodedUser)
         }catch{
@@ -130,12 +158,13 @@ extension AuthViewModel {
         let uid = authDataResult.user.uid
         let fullname = authDataResult.user.displayName ?? "Update Info"
         
-        let user = User(id: uid, fullname: fullname, email: email)
+        let user = User(id: uid, fullname: fullname, email: email, favorites: [], basket: [])
         
         self.currentUser = user
         
         return user
     }
+  
     
 }
 

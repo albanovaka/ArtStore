@@ -20,6 +20,7 @@
 		9C7B65952BC32DB400D95436 /* BasketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7B65942BC32DB400D95436 /* BasketView.swift */; };
 		9C7B659B2BC3363000D95436 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7B659A2BC3363000D95436 /* MainTabView.swift */; };
 		9C7B659D2BC3382200D95436 /* DailyScrum in Resources */ = {isa = PBXBuildFile; fileRef = 9C7B659C2BC3382200D95436 /* DailyScrum */; };
+		9CA4CD982BC38750000AF481 /* FavItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4CD972BC38750000AF481 /* FavItemsViewModel.swift */; };
 		9CB71EE52BBDFFA0001AF1A0 /* ArtStoreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB71EE42BBDFFA0001AF1A0 /* ArtStoreApp.swift */; };
 		9CB71EE72BBDFFA0001AF1A0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB71EE62BBDFFA0001AF1A0 /* ContentView.swift */; };
 		9CB71EE92BBDFFA1001AF1A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CB71EE82BBDFFA1001AF1A0 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		9C7B65942BC32DB400D95436 /* BasketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketView.swift; sourceTree = "<group>"; };
 		9C7B659A2BC3363000D95436 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		9C7B659C2BC3382200D95436 /* DailyScrum */ = {isa = PBXFileReference; lastKnownFileType = text; path = DailyScrum; sourceTree = "<group>"; };
+		9CA4CD972BC38750000AF481 /* FavItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavItemsViewModel.swift; sourceTree = "<group>"; };
 		9CB71EE12BBDFFA0001AF1A0 /* ArtStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArtStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CB71EE42BBDFFA0001AF1A0 /* ArtStoreApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtStoreApp.swift; sourceTree = "<group>"; };
 		9CB71EE62BBDFFA0001AF1A0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				9CB71F062BBF08D6001AF1A0 /* User.swift */,
+				9CA4CD972BC38750000AF481 /* FavItemsViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				9CB71F052BBF0298001AF1A0 /* SettingsRowView.swift in Sources */,
 				9CB71F1C2BBF2DC0001AF1A0 /* AuthViewModel.swift in Sources */,
 				9C7B65932BC32D9700D95436 /* FavUserItemView.swift in Sources */,
+				9CA4CD982BC38750000AF481 /* FavItemsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -37,7 +37,7 @@ extension User {
         basket: [
             BasketItem(itemId: "item4ID", quantity: 1),
             BasketItem(itemId: "item5ID", quantity: 2)
-        ] // Mock basket with some items and quantities
+        ]
     )
 }
 

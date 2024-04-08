@@ -40,6 +40,7 @@ struct ItemsGridView: View {
                                                     .foregroundColor(.white)
                                             )
                                     }
+                                    
                                     Text(item.description)
                                         .font(.caption)
                                         .lineLimit(1)
@@ -47,7 +48,12 @@ struct ItemsGridView: View {
                                         .padding(.vertical, 8)
                                     HStack {
                                         Button(action: {
-                                            // Handle like action
+                                            print("button tapped")
+                                            if item.id != nil {
+                                                viewModel.addFavorite(itemId: item.item_id)
+                                                }
+                                         
+
                                         }) {
                                             Image(systemName: "heart")
                                                 .foregroundColor(.white)
@@ -97,7 +103,11 @@ struct ItemsGridView: View {
         }
         
     }
+    
 }
+
+
+
 
 
 

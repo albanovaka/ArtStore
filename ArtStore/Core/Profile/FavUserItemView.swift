@@ -8,8 +8,19 @@
 import SwiftUI
 
 struct FavUserItemView: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @StateObject var favItemsViewModel = FavItemsViewModel()
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List(favItemsViewModel.favoriteItems) { item in
+                    Text(item.description)
+                    // Display each favorite item here
+                }
+        .onAppear {
+            if let userId = authViewModel.currentUser?.id {
+                favItemsViewModel.favoriteItems.removeAll() // Clear existing items
+                favItemsViewModel.fetchFavoriteItems(userId: userId)
+            }
+        }
     }
 }
 

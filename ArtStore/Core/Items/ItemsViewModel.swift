@@ -13,15 +13,16 @@ struct Item: Identifiable, Codable {
     @DocumentID var id: String?
     let description: String
     let item_id: String
-    var image: UIImage? = nil // This is for holding the UIImage after fetching from storage
-    var image_storage_path: String? // This should be a String path, not UIImage
+    var image: UIImage? = nil
+    var image_storage_path: String?
+    var isLiked: Bool = false
+    
 
-    // Conform to `Codable` but exclude `image`
-    private enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case id
         case description
         case item_id
-        case image_storage_path // Only include this if you wish to encode/decode this property
+        case image_storage_path
     }
 }
 
@@ -31,7 +32,7 @@ class ItemsViewModel: ObservableObject {
     @Published var items: [Item] = []
     private var db = Firestore.firestore()
     private let storage = Storage.storage()
-
+    
     func fetchItems() {
         db.collection("items").getDocuments { [weak self] (querySnapshot, error) in
             guard let self = self else { return }
@@ -64,7 +65,7 @@ class ItemsViewModel: ObservableObject {
             }
         }
     }
-
+    
     private func fetchImageForItem(imagePath: String, completion: @escaping (UIImage?) -> Void) {
         // Assuming imagePath is like "gs://bucketname/path/to/image.png"
         // We need to extract the "/path/to/image.png" part
@@ -91,8 +92,8 @@ class ItemsViewModel: ObservableObject {
             completion(nil)
         }
     }
-
-
-
+    
+    
+    
 }
 
