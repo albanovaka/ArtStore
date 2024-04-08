@@ -50,10 +50,8 @@ struct ItemsGridView: View {
                                         Button(action: {
                                             print("button tapped")
                                             if item.id != nil {
-                                                viewModel.addFavorite(itemId: item.item_id)
+                                                viewModel.toggleFavorite(itemId: item.item_id)
                                                 }
-                                         
-
                                         }) {
                                             Image(systemName: "heart")
                                                 .foregroundColor(.white)

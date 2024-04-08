@@ -26,20 +26,49 @@ class AuthViewModel: ObservableObject{
             await fetchUser()
         }
     }
-    
-    func addFavorite(itemId: String) {
+    func toggleFavorite(itemId: String) {
         guard let userId = self.userSession?.uid else { return }
         let userFavoritesRef = Firestore.firestore().collection("user").document(userId).collection("favorites")
         
-        userFavoritesRef.document(itemId).setData([:]) { error in
-            if let error = error {
-                print("Error adding favorite item: \(error.localizedDescription)")
+        // Check if the item is already a favorite
+        userFavoritesRef.document(itemId).getDocument { [weak self] (document, error) in
+            if let document = document, document.exists {
+                // Item exists, so remove it from favorites
+                userFavoritesRef.document(itemId).delete() { err in
+                    if let err = err {
+                        print("Error removing favorite item: \(err.localizedDescription)")
+                    } else {
+                        print("Favorite item removed successfully.")
+                        // Optionally, update the UI or local data model to reflect the change
+                    }
+                }
             } else {
-                print("Favorite item added successfully.")
-                // Here you may want to fetch the updated favorites and update the UI accordingly
+                // Item does not exist, so add it to favorites
+                userFavoritesRef.document(itemId).setData([:]) { err in
+                    if let err = err {
+                        print("Error adding favorite item: \(err.localizedDescription)")
+                    } else {
+                        print("Favorite item added successfully.")
+                        // Optionally, update the UI or local data model to reflect the change
+                    }
+                }
             }
         }
     }
+
+//    func addFavorite(itemId: String) {
+//        guard let userId = self.userSession?.uid else { return }
+//        let userFavoritesRef = Firestore.firestore().collection("user").document(userId).collection("favorites")
+//        
+//        userFavoritesRef.document(itemId).setData([:]) { error in
+//            if let error = error {
+//                print("Error adding favorite item: \(error.localizedDescription)")
+//            } else {
+//                print("Favorite item added successfully.")
+//                // Here you may want to fetch the updated favorites and update the UI accordingly
+//            }
+//        }
+//    }
     
     func addToBasket(itemId: String, quantity: Int) {
         guard let userId = self.userSession?.uid else { return }
