@@ -30,6 +30,7 @@ struct Item: Identifiable, Codable {
 
 class ItemsViewModel: ObservableObject {
     @Published var items: [Item] = []
+    @Published var favoriteItems: [Item] = []
     private var db = Firestore.firestore()
     private let storage = Storage.storage()
     
@@ -92,7 +93,50 @@ class ItemsViewModel: ObservableObject {
             completion(nil)
         }
     }
-    
+    func fetchItems(from collectionPath: String) {
+           db.collection(collectionPath).getDocuments { [weak self] (querySnapshot, error) in
+               guard let self = self else { return }
+               
+               if let e = error {
+                   print("Error fetching items: \(e.localizedDescription)")
+                   return
+               }
+               
+               guard let snapshotDocuments = querySnapshot?.documents else {
+                   print("No items found.")
+                   return
+               }
+               
+               self.favoriteItems.removeAll() // Clear existing items
+               
+               let group = DispatchGroup()
+               
+               snapshotDocuments.forEach { document in
+                   guard let item = try? document.data(as: Item.self) else { return }
+                   
+                   // Only enter the group if there's an image path to fetch.
+                   if let imagePath = item.image_storage_path {
+                       group.enter()
+                       self.fetchImageForItem(imagePath: imagePath) { image in
+                           DispatchQueue.main.async {
+                               var updatedItem = item
+                               updatedItem.image = image
+                               self.favoriteItems.append(updatedItem)
+                               group.leave()
+                           }
+                       }
+                   } else {
+                       DispatchQueue.main.async {
+                           self.favoriteItems.append(item)
+                       }
+                   }
+               }
+               
+               group.notify(queue: .main) {
+                   // Handle any logic after all items are fetched
+               }
+           }
+       }
     
     
 }
