@@ -10,8 +10,15 @@ import FirebaseFirestore
 
 class BasketItemsViewModel: ObservableObject {
     @Published var basketItems: [Item] = []
+    @Published var totalPrice: Double = 0.0
     private var db = Firestore.firestore()
 
+    func calculateTotalPrice() {
+            totalPrice = basketItems.reduce(0) { total, item in
+                total + (item.price ?? 0) * Double(item.quantity ?? 1)
+            }
+        }
+    
     func fetchBasketItems(userId: String) {
         self.basketItems.removeAll()
         let userBasketRef = db.collection("user").document(userId).collection("basket")
@@ -53,6 +60,7 @@ class BasketItemsViewModel: ObservableObject {
             }
 
             group.notify(queue: .main) {
+                self.calculateTotalPrice()
                 print("Finished fetching all basket items")
             }
         }

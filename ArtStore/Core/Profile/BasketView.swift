@@ -33,7 +33,6 @@ struct BasketItemRow: View {
         }
     }
 }
-
 struct BasketView: View {
     
     @EnvironmentObject var authViewModel: AuthViewModel
@@ -41,11 +40,24 @@ struct BasketView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(basketItemsViewModel.basketItems) { item in
-                    BasketItemRow(basketItem: item)
+            VStack {
+                // The list of items
+                List {
+                    ForEach(basketItemsViewModel.basketItems) { item in
+                        BasketItemRow(basketItem: item)
+                    }
+                    .onDelete(perform: deleteItems)
                 }
-                .onDelete(perform: deleteItems)
+
+                HStack {
+                                    Spacer()
+                                    Text("Total: $\(basketItemsViewModel.totalPrice, specifier: "%.2f")")
+                                        .font(.title)
+                                        .padding()
+                                    Spacer()
+                                }
+                                .background(Color.clear)
+                                .frame(maxWidth: .infinity, maxHeight: 50)
             }
             .navigationTitle("Basket")
             .onAppear {
@@ -57,7 +69,10 @@ struct BasketView: View {
     }
 
     func deleteItems(at offsets: IndexSet) {
-        // Implement item deletion
+        // Implement item deletion logic here
+        basketItemsViewModel.basketItems.remove(atOffsets: offsets)
+        // Recalculate total after deletion
+        basketItemsViewModel.calculateTotalPrice()
     }
 }
 
