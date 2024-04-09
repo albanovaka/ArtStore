@@ -32,3 +32,16 @@ April 6th 2024
  3.
  - I need to figure out the way in which the checkout will be set up
  
+April 8th 2024
+1.
+- we now can see the price, added field to the database as well
+- function to add to basket and remove has been added
+
+2.
+- A view for the basket has to be made
+- a function to display the total of the purchase
+- a button for checkout which brings you to a view where your address can be added (database address has to be added)
+- checkout
+
+3.
+figure out the checkout process api
