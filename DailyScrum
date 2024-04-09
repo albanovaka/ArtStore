@@ -19,3 +19,16 @@ April 6th 2024
  
  3. Need to Figure out:
  - I need to figure out the ways in which the list in the basket and favourite will be created.
+ 
+ April 8th 2024
+ 1.Done/ Not Done since last scrum
+ - Tabview has been set up
+ - User can now add items to favorite, toggle function has been created to remove or add to list of favorite an item once the button has been pressed.
+ 
+ 2.
+ - Update itemsModelView to see the price of the item
+ - Function to add to basket an item
+ 
+ 3.
+ - I need to figure out the way in which the checkout will be set up
+ 
