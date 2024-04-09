@@ -18,6 +18,7 @@ struct Item: Identifiable, Codable {
     var isLiked: Bool = false
     var price: Double?
     let name: String
+    var quantity: Int?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -26,6 +27,7 @@ struct Item: Identifiable, Codable {
         case image_storage_path
         case price
         case name
+        case quantity
     }
 }
 

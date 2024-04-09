@@ -13,8 +13,8 @@ class BasketItemsViewModel: ObservableObject {
     private var db = Firestore.firestore()
 
     func fetchBasketItems(userId: String) {
-        let userFavoritesRef = db.collection("user").document(userId).collection("basket")
-        userFavoritesRef.getDocuments { [weak self] (snapshot, error) in
+        let userBasketRef = db.collection("user").document(userId).collection("basket")
+        userBasketRef.getDocuments { [weak self] (snapshot, error) in
             guard let self = self else { return }
 
             guard let documents = snapshot?.documents else {
@@ -25,8 +25,8 @@ class BasketItemsViewModel: ObservableObject {
             let group = DispatchGroup()
 
             for document in documents {
+                guard let itemId = document.data()["itemId"] as? String else { continue }
                 group.enter()
-                let itemId = document.documentID
                 self.fetchItemDetails(itemId: itemId) { item in
                     if var item = item {
                         // If there's an image path, fetch the image.
@@ -52,10 +52,11 @@ class BasketItemsViewModel: ObservableObject {
             }
 
             group.notify(queue: .main) {
-                print("Finished fetching all favorite items")
+                print("Finished fetching all basket items")
             }
         }
     }
+
     private func fetchItemDetails(itemId: String, completion: @escaping (Item?) -> Void) {
         db.collection("items").document(itemId).getDocument { (documentSnapshot, error) in
             if let error = error {
