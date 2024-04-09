@@ -45,3 +45,13 @@ April 8th 2024
 
 3.
 figure out the checkout process api
+
+April 9th.
+1. The view of the basket has been added though, I wasnt able to add the property of the quantity. I ran into a bit of a problem in the way in which basket items were added.
+
+2.
+- a function to display the total of the purchase
+- a button for checkout which brings you to a view where your address can be added (database address has to be added)
+- checkout
+
+3. Still need to check the api for payment. 
