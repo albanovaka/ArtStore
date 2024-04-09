@@ -13,6 +13,7 @@ class BasketItemsViewModel: ObservableObject {
     private var db = Firestore.firestore()
 
     func fetchBasketItems(userId: String) {
+        self.basketItems.removeAll()
         let userBasketRef = db.collection("user").document(userId).collection("basket")
         userBasketRef.getDocuments { [weak self] (snapshot, error) in
             guard let self = self else { return }

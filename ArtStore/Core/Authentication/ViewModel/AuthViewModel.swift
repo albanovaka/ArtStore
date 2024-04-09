@@ -64,7 +64,7 @@ class AuthViewModel: ObservableObject{
     func addToBasket(itemId: String, quantity: Int) {
         guard let userId = self.userSession?.uid else { return }
         let userBasketRef = Firestore.firestore().collection("user").document(userId).collection("basket")
-        
+
         userBasketRef.document(itemId).setData(["quantity": quantity]) { error in
             if let error = error {
                 print("Error adding item to basket: \(error.localizedDescription)")
@@ -74,6 +74,7 @@ class AuthViewModel: ObservableObject{
             }
         }
     }
+
     
     func signIn(withEmail email: String, password: String) async throws{
         do{
