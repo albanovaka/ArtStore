@@ -12,6 +12,10 @@ import FirebaseFirestore
 struct ItemsGridView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     @StateObject var itemsViewModel = ItemsViewModel()
+    
+    @State private var showingToast = false
+    @State private var toastMessage = ""
+    
     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
 
     var body: some View {
@@ -49,8 +53,8 @@ struct ItemsGridView: View {
                                     HStack {
                                         Button(action: {
                                             print("button tapped")
-                                            if item.id != nil {
-                                                viewModel.toggleFavorite(itemId: item.item_id)
+                                            if let itemID = item.id {
+                                                    handleToggleFavorite(for: item)
                                                 }
                                         }) {
                                             Image(systemName: "heart")
@@ -63,6 +67,7 @@ struct ItemsGridView: View {
                                                                 .stroke(Color.gray, lineWidth: 2))
                                         }
                                         .buttonStyle(BorderlessButtonStyle())
+                                        
                                         
                                         Spacer()
                                         
@@ -97,10 +102,34 @@ struct ItemsGridView: View {
                 itemsViewModel.fetchItems()
             }
             .background(Color(hex: "FEC7B4"))
+            .toast(isShowing: $showingToast, text: toastMessage)
             .foregroundColor(Color(hex: "F7418F"))
         }
         
+        
     }
+    private func handleToggleFavorite(for item: Item) {
+        // Check that we have a valid item ID
+        guard let itemId = item.id else { return }
+
+        viewModel.toggleFavorite(itemId: itemId) { wasAdded in
+            // Now we are sure that `itemId` is not nil
+            let message = wasAdded ? "Added to Favorites" : "Removed from Favorites"
+            showToast(message: message)
+        }
+    }
+
+      
+      private func showToast(message: String) {
+          // Update the toast message and show the toast
+          toastMessage = message
+          showingToast = true
+          // Hide the toast after 2 seconds
+          DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+              showingToast = false
+          }
+      }
+    
     
 }
 
