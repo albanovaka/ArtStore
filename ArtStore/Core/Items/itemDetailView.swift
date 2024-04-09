@@ -41,7 +41,7 @@ struct itemDetailView: View {
 
 struct itemDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        let dummyItem = Item(id: "1", description: "Example item", item_id: "xyz", image: UIImage(named: "placeholder"), image_storage_path: "path/to/example.jpg")
+        let dummyItem = Item(id: "1", description: "Example item", item_id: "xyz", image: UIImage(named: "placeholder"), image_storage_path: "path/to/example.jpg", name: "ghfh")
         itemDetailView(item: dummyItem)
     }
 }

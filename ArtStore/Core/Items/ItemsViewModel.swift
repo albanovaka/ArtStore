@@ -16,13 +16,16 @@ struct Item: Identifiable, Codable {
     var image: UIImage? = nil
     var image_storage_path: String?
     var isLiked: Bool = false
-    
+    var price: Double?
+    let name: String
 
     enum CodingKeys: String, CodingKey {
         case id
         case description
         case item_id
         case image_storage_path
+        case price
+        case name
     }
 }
 

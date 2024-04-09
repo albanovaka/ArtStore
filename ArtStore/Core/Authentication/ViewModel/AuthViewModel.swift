@@ -26,37 +26,9 @@ class AuthViewModel: ObservableObject{
             await fetchUser()
         }
     }
-//    func toggleFavorite(itemId: String) {
-//        guard let userId = self.userSession?.uid else { return }
-//        let userFavoritesRef = Firestore.firestore().collection("user").document(userId).collection("favorites")
-//
-//        // Check if the item is already a favorite
-//        userFavoritesRef.document(itemId).getDocument { [weak self] (document, error) in
-//            if let document = document, document.exists {
-//                // Item exists, so remove it from favorites
-//                userFavoritesRef.document(itemId).delete() { err in
-//                    if let err = err {
-//                        print("Error removing favorite item: \(err.localizedDescription)")
-//                    } else {
-//                        print("Favorite item removed successfully.")
-//                        // Optionally, update the UI or local data model to reflect the change
-//                    }
-//                }
-//            } else {
-//                // Item does not exist, so add it to favorites
-//                userFavoritesRef.document(itemId).setData([:]) { err in
-//                    if let err = err {
-//                        print("Error adding favorite item: \(err.localizedDescription)")
-//                    } else {
-//                        print("Favorite item added successfully.")
-//                        // Optionally, update the UI or local data model to reflect the change
-//                    }
-//                }
-//            }
-//        }
-//    }
 
-    // In AuthViewModel
+
+
     func toggleFavorite(itemId: String, completion: @escaping (Bool) -> Void) {
         guard let userId = userSession?.uid else { return }
         let userFavoritesRef = Firestore.firestore().collection("user").document(userId).collection("favorites")
@@ -212,8 +184,41 @@ extension AuthViewModel {
         
         return user
     }
-  
     
+    func addToBasket(itemId: String, completion: @escaping (Bool, Error?) -> Void) {
+        guard let userId = userSession?.uid else { return }
+        let userBasketRef = Firestore.firestore().collection("user").document(userId).collection("basket")
+
+        // Create an object for the basket item
+        let basketItem = ["itemId": itemId]
+
+        // Adding the item to the basket collection
+        userBasketRef.addDocument(data: basketItem) { error in
+            if let error = error {
+                print("Error adding item to basket: \(error.localizedDescription)")
+                completion(false, error)
+            } else {
+                print("Item added to basket successfully.")
+                completion(true, nil)
+            }
+        }
+    }
+
+    func removeFromBasket(basketItemId: String, completion: @escaping (Bool, Error?) -> Void) {
+        guard let userId = userSession?.uid else { return }
+        let userBasketRef = Firestore.firestore().collection("user").document(userId).collection("basket")
+
+        // Deleting the item from the basket collection
+        userBasketRef.document(basketItemId).delete() { error in
+            if let error = error {
+                print("Error removing item from basket: \(error.localizedDescription)")
+                completion(false, error)
+            } else {
+                print("Item removed from basket successfully.")
+                completion(true, nil)
+            }
+        }
+    }
 }
 
 

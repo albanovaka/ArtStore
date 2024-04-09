@@ -45,11 +45,19 @@ struct ItemsGridView: View {
                                             )
                                     }
                                     
-                                    Text(item.description)
-                                        .font(.caption)
-                                        .lineLimit(1)
-                                        .frame(maxWidth: .infinity, alignment: .center)
-                                        .padding(.vertical, 8)
+                                    VStack{
+                                        Text(item.name)
+                                            .font(.caption)
+                                            .lineLimit(1)
+                                            .frame(maxWidth: .infinity, alignment: .center)
+                                            .padding(.vertical, 8)
+                                        if let price = item.price {
+                                            Text("$\(price, specifier: "%.2f")") 
+                                        } else {
+                                            Text("Price not available")
+                                        }
+
+                                    }
                                     HStack {
                                         Button(action: {
                                             print("button tapped")
@@ -72,7 +80,19 @@ struct ItemsGridView: View {
                                         Spacer()
                                         
                                         Button(action: {
-                                            // Handle add to cart action
+                                            if let itemID = item.id {
+                                                    viewModel.addToBasket(itemId: itemID) { success, error in
+                                                        if success {
+                                                            // Successfully added to basket, show a toast message
+                                                            self.showToast(message: "Added to your basket")
+                                                        } else if let error = error {
+                                                            // Failed to add to basket, handle the error
+                                                            print("Failed to add to basket: \(error.localizedDescription)")
+                                                            // Optionally show a toast message for the error
+                                                            self.showToast(message: "Error: \(error.localizedDescription)")
+                                                        }
+                                                    }
+                                                }
                                         }) {
                                             Image(systemName: "plus")
                                                 .foregroundColor(.white)
