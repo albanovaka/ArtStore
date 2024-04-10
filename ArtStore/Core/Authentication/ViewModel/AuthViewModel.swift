@@ -61,53 +61,6 @@ class AuthViewModel: ObservableObject{
     }
 
 
-//    func addToBasket(itemId: String, completion: @escaping (Bool, Error?) -> Void) {
-//        guard let userId = userSession?.uid else {
-//            completion(false, nil)
-//            return
-//        }
-//
-//        let userBasketRef = Firestore.firestore().collection("user").document(userId).collection("basket")
-//
-//        userBasketRef.whereField("itemId", isEqualTo: itemId).getDocuments { (querySnapshot, err) in
-//            if let err = err {
-//                print("Error checking for duplicates: \(err.localizedDescription)")
-//                completion(false, err)
-//                return
-//            }
-//
-//            // Check if any documents are returned with the same itemId, which means a duplicate exists
-//            if let documents = querySnapshot?.documents, !documents.isEmpty {
-//                // We found a document with the same itemId, which means it's already in the basket
-//                print("Item is already in the basket.")
-//
-//                // Assuming there's only one document with this itemId
-//                if let document = documents.first {
-//                    let currentQuantity = document.data()["quantity"] as? Int ?? 0
-//                    let newQuantity = currentQuantity + 1
-//                    let documentRef = document.reference // Get a reference to the document
-//
-//                    transaction.updateData(["quantity": newQuantity], forDocument: documentRef)
-//                }
-//
-//                completion(false, nil)
-//                return
-//            }
-//
-//
-//            // No documents found with the itemId, safe to add it to the basket
-//            let newDocumentRef = userBasketRef.document() // Firestore generates a new document ID
-//            newDocumentRef.setData(["itemId": itemId, "quantity": 1]) { error in
-//                if let error = error {
-//                    print("Error adding item to basket: \(error.localizedDescription)")
-//                    completion(false, error)
-//                } else {
-//                    print("Item added to basket successfully.")
-//                    completion(true, nil)
-//                }
-//            }
-//        }
-//    }
     
     func addToBasket(itemId: String, completion: @escaping (Bool, Error?) -> Void) {
         guard let userId = userSession?.uid else {
@@ -154,6 +107,50 @@ class AuthViewModel: ObservableObject{
         }
     }
 
+    func removeFromBasket(itemId: String, completion: @escaping (Bool, Error?) -> Void) {
+        guard let userId = userSession?.uid else {
+            completion(false, nil)
+            return
+        }
+
+        let userBasketRef = Firestore.firestore().collection("user").document(userId).collection("basket")
+        let documentRef = userBasketRef.document(itemId)
+
+        Firestore.firestore().runTransaction({ (transaction, errorPointer) -> Any? in
+            let documentSnapshot: DocumentSnapshot
+            do {
+                documentSnapshot = try transaction.getDocument(documentRef)
+            } catch let fetchError as NSError {
+                errorPointer?.pointee = fetchError
+                return nil
+            }
+
+            // If the document exists, check the quantity and decrement or remove
+            if documentSnapshot.exists, let currentQuantity = documentSnapshot.data()?["quantity"] as? Int {
+                if currentQuantity > 1 {
+                    // If there's more than one, decrement the quantity
+                    transaction.updateData(["quantity": currentQuantity - 1], forDocument: documentRef)
+                } else {
+                    // If there's only one, remove the item from the basket
+                    transaction.deleteDocument(documentRef)
+                }
+            } else {
+                // The document does not exist or quantity is not a valid number, which is an error
+                errorPointer?.pointee = NSError(domain: "AppError", code: -1, userInfo: [NSLocalizedDescriptionKey : "Item not found in basket or invalid quantity."])
+                return nil
+            }
+
+            return nil // Return nil to indicate success
+        }) { (object, error) in
+            if let error = error {
+                print("Transaction failed: \(error)")
+                completion(false, error)
+            } else {
+                print("Transaction completed successfully.")
+                completion(true, nil)
+            }
+        }
+    }
 
 
 
@@ -284,23 +281,6 @@ extension AuthViewModel {
         self.currentUser = user
         
         return user
-    }
-
-
-    func removeFromBasket(basketItemId: String, completion: @escaping (Bool, Error?) -> Void) {
-        guard let userId = userSession?.uid else { return }
-        let userBasketRef = Firestore.firestore().collection("user").document(userId).collection("basket")
-
-        // Deleting the item from the basket collection
-        userBasketRef.document(basketItemId).delete() { error in
-            if let error = error {
-                print("Error removing item from basket: \(error.localizedDescription)")
-                completion(false, error)
-            } else {
-                print("Item removed from basket successfully.")
-                completion(true, nil)
-            }
-        }
     }
 }
 

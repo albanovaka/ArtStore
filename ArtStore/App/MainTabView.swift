@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainTabView: View {
+    @EnvironmentObject var authView: AuthViewModel
     var body: some View {
         TabView {
                     ItemsGridView()
@@ -20,7 +21,7 @@ struct MainTabView: View {
                             Label("Favorites", systemImage: "heart")
                         }
 
-                    BasketView()
+                    BasketView(authViewModel: authView)
                         .tabItem {
                             Label("Basket", systemImage: "cart")
                         }

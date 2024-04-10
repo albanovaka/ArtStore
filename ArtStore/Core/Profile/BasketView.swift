@@ -7,9 +7,10 @@
 
 import SwiftUI
 
-
 struct BasketItemRow: View {
-    var basketItem: Item // Assuming Item is your model similar to CartItem
+    var basketItem: Item
+    var index: Int
+    var basketViewModel: BasketItemsViewModel
 
     var body: some View {
         HStack {
@@ -30,23 +31,45 @@ struct BasketItemRow: View {
                 }
             }
             Spacer()
+
+            // Minus button
+            Button(action: {
+                basketViewModel.decreaseQuantity(index: index)
+            }) {
+                Image(systemName: "minus.circle")
+            }
+            .buttonStyle(BorderlessButtonStyle())
+          //  .disabled(basketItem.quantity! <= 1)  // Disable if quantity is 1 or less
+
+            // Quantity display
+            Text("\(basketItem.quantity ?? 1)")
+            
+            // Plus button
+            Button(action: {
+                basketViewModel.increaseQuantity(index: index)
+            }) {
+                Image(systemName: "plus.circle")
+            }
+            .buttonStyle(BorderlessButtonStyle())
         }
     }
 }
 struct BasketView: View {
     
     @EnvironmentObject var authViewModel: AuthViewModel
-    @StateObject var basketItemsViewModel = BasketItemsViewModel()
+    @StateObject var basketItemsViewModel: BasketItemsViewModel
     
+    init(authViewModel: AuthViewModel) {
+        _basketItemsViewModel = StateObject(wrappedValue: BasketItemsViewModel(authViewModel: authViewModel))
+    }
     var body: some View {
         NavigationView {
             VStack {
                 // The list of items
                 List {
-                    ForEach(basketItemsViewModel.basketItems) { item in
-                        BasketItemRow(basketItem: item)
-                    }
-                    .onDelete(perform: deleteItems)
+                    ForEach(Array(basketItemsViewModel.basketItems.enumerated()), id: \.element.id) { index, item in
+                                            BasketItemRow(basketItem: item, index: index, basketViewModel: basketItemsViewModel)
+                                        }
                 }
 
                 HStack {
@@ -78,13 +101,6 @@ struct BasketView: View {
             }
         }
     }
-
-    func deleteItems(at offsets: IndexSet) {
-        // Implement item deletion logic here
-        basketItemsViewModel.basketItems.remove(atOffsets: offsets)
-        // Recalculate total after deletion
-        basketItemsViewModel.calculateTotalPrice()
-    }
 }
 
 
@@ -95,6 +111,6 @@ struct BasketView: View {
 
 struct BasketView_Previews: PreviewProvider {
     static var previews: some View {
-        BasketView()
+        BasketView(authViewModel: AuthViewModel())
     }
 }
