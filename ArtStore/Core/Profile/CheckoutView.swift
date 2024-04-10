@@ -104,17 +104,17 @@ struct CheckoutView: View {
                 "country": country
             ]
             
-            // Replace with the actual user ID of the logged-in user.
             let userId = basketItemsViewModel.authViewModel.currentUser?.id
             
-            // Save the address
             basketItemsViewModel.saveAddressForUser(userId: userId!, address: addressData) { success, error in
                 if success {
                     // Save the basket as past purchases
                     basketItemsViewModel.savePastPurchaseForUser(userId: userId!, items: basketItemsViewModel.basketItems) { success, error in
                         if success {
-                            self.basketItemsViewModel.basketItems.removeAll()
-                            self.basketItemsViewModel.totalPrice = 0
+                            self.basketItemsViewModel.removeAllItemsFromBasket(userId: userId!) {
+                                        self.basketItemsViewModel.basketItems.removeAll()
+                                        self.basketItemsViewModel.totalPrice = 0
+                                    }
                         } else {
                             if let error = error {
                                    print("Error saving past purchase: \(error.localizedDescription)")
@@ -123,8 +123,6 @@ struct CheckoutView: View {
                                }
                         }
                     }
-                } else {
-                    // Handle error in saving address
                 }
             }
         } else {

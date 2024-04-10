@@ -203,5 +203,35 @@ class BasketItemsViewModel: ObservableObject {
             }
         }
     }
+    
+    func removeAllItemsFromBasket(userId: String, completion: @escaping () -> Void) {
+        let userBasketRef = Firestore.firestore().collection("user").document(userId).collection("basket")
+        userBasketRef.getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error getting basket documents: \(error.localizedDescription)")
+                completion()
+                return
+            }
+
+            guard let documents = snapshot?.documents else {
+                print("No items in basket to delete")
+                completion()
+                return
+            }
+
+            let batch = Firestore.firestore().batch()
+            
+            documents.forEach { batch.deleteDocument($0.reference) }
+            
+            batch.commit { err in
+                if let err = err {
+                    print("Error removing basket items: \(err.localizedDescription)")
+                } else {
+                    print("All basket items removed successfully")
+                }
+                completion()
+            }
+        }
+    }
 
 }
