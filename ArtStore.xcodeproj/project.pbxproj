@@ -24,6 +24,7 @@
 		9CA4CD9A2BC4A7A6000AF481 /* ImageServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4CD992BC4A7A6000AF481 /* ImageServices.swift */; };
 		9CA4CD9E2BC4BB94000AF481 /* ToastModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4CD9D2BC4BB94000AF481 /* ToastModifier.swift */; };
 		9CA4CDA02BC4E911000AF481 /* BasketItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4CD9F2BC4E911000AF481 /* BasketItemsViewModel.swift */; };
+		9CA4CDA22BC6EBD3000AF481 /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4CDA12BC6EBD3000AF481 /* CheckoutView.swift */; };
 		9CB71EE52BBDFFA0001AF1A0 /* ArtStoreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB71EE42BBDFFA0001AF1A0 /* ArtStoreApp.swift */; };
 		9CB71EE72BBDFFA0001AF1A0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB71EE62BBDFFA0001AF1A0 /* ContentView.swift */; };
 		9CB71EE92BBDFFA1001AF1A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CB71EE82BBDFFA1001AF1A0 /* Assets.xcassets */; };
@@ -56,6 +57,7 @@
 		9CA4CD992BC4A7A6000AF481 /* ImageServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServices.swift; sourceTree = "<group>"; };
 		9CA4CD9D2BC4BB94000AF481 /* ToastModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModifier.swift; sourceTree = "<group>"; };
 		9CA4CD9F2BC4E911000AF481 /* BasketItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketItemsViewModel.swift; sourceTree = "<group>"; };
+		9CA4CDA12BC6EBD3000AF481 /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
 		9CB71EE12BBDFFA0001AF1A0 /* ArtStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArtStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CB71EE42BBDFFA0001AF1A0 /* ArtStoreApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtStoreApp.swift; sourceTree = "<group>"; };
 		9CB71EE62BBDFFA0001AF1A0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				9CB71F022BBEF5A0001AF1A0 /* ProfileView.swift */,
 				9C7B65922BC32D9700D95436 /* FavUserItemView.swift */,
 				9C7B65942BC32DB400D95436 /* BasketView.swift */,
+				9CA4CDA12BC6EBD3000AF481 /* CheckoutView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				9CA4CD9E2BC4BB94000AF481 /* ToastModifier.swift in Sources */,
 				9C4B3A632BC035AA00C17FA7 /* ItemsViewModel.swift in Sources */,
 				9C7B659B2BC3363000D95436 /* MainTabView.swift in Sources */,
+				9CA4CDA22BC6EBD3000AF481 /* CheckoutView.swift in Sources */,
 				9C4B3A6E2BC1D1BD00C17FA7 /* UIColor+Extensions.swift in Sources */,
 				9CB71F032BBEF5A0001AF1A0 /* ProfileView.swift in Sources */,
 				9C7B65912BC3284A00D95436 /* itemDetailView.swift in Sources */,

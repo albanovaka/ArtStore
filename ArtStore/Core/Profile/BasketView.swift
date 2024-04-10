@@ -50,14 +50,25 @@ struct BasketView: View {
                 }
 
                 HStack {
-                                    Spacer()
-                                    Text("Total: $\(basketItemsViewModel.totalPrice, specifier: "%.2f")")
-                                        .font(.title)
-                                        .padding()
-                                    Spacer()
-                                }
-                                .background(Color.clear)
-                                .frame(maxWidth: .infinity, maxHeight: 50)
+                    Spacer()
+                    Text("Total: $\(basketItemsViewModel.totalPrice, specifier: "%.2f")")
+                        .font(.title)
+                        .padding()
+                    Spacer()
+                    NavigationLink(destination: CheckoutView(), label: {
+                        Text("Checkout")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(height: 50)
+                            .background(Color.blue)
+                            .cornerRadius(8)
+                    })
+                    Spacer()
+                }
+                .background(Color.clear)
+                .frame(maxWidth: .infinity, maxHeight: 50)
+
             }
             .navigationTitle("Basket")
             .onAppear {

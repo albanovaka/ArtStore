@@ -29,14 +29,18 @@ class BasketItemsViewModel: ObservableObject {
                 print("No items in basket found for user")
                 return
             }
-            
+
             let group = DispatchGroup()
 
             for document in documents {
-                guard let itemId = document.data()["itemId"] as? String else { continue }
+                guard let itemId = document.data()["itemId"] as? String,
+                      let quantity = document.data()["quantity"] as? Int else { continue }
                 group.enter()
-                self.fetchItemDetails(itemId: itemId) { item in
+                self.fetchItemDetails(itemId: itemId, quantity: quantity) { item in
                     if var item = item {
+                        // Add the quantity to the item
+                        item.quantity = quantity
+                        
                         // If there's an image path, fetch the image.
                         if let imagePath = item.image_storage_path {
                             ImageService.shared.fetchImageForItem(imagePath: imagePath) { image in
@@ -65,8 +69,9 @@ class BasketItemsViewModel: ObservableObject {
             }
         }
     }
+    
 
-    private func fetchItemDetails(itemId: String, completion: @escaping (Item?) -> Void) {
+    private func fetchItemDetails(itemId: String, quantity: Int, completion: @escaping (Item?) -> Void) {
         db.collection("items").document(itemId).getDocument { (documentSnapshot, error) in
             if let error = error {
                 print("Error fetching item details: \(error.localizedDescription)")
