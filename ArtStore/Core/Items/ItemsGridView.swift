@@ -15,6 +15,7 @@ struct ItemsGridView: View {
     
     @State private var showingToast = false
     @State private var toastMessage = ""
+    @State var isAddingToBasket = false
     
     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
 
@@ -80,8 +81,10 @@ struct ItemsGridView: View {
                                         Spacer()
                                         
                                         Button(action: {
-                                            if let itemID = item.id {
+                                            if let itemID = item.id, !self.isAddingToBasket {
+                                                    self.isAddingToBasket = true // Disable the button or show loading indicator
                                                     viewModel.addToBasket(itemId: itemID) { success, error in
+                                                        self.isAddingToBasket = false // Enable the button or hide loading indicator
                                                         if success {
                                                             // Successfully added to basket, show a toast message
                                                             self.showToast(message: "Added to your basket")
@@ -100,6 +103,7 @@ struct ItemsGridView: View {
                                                 .background(Circle().fill(Color(hex: "F7418F")))
                                         }
                                         .buttonStyle(BorderlessButtonStyle())
+                                        .disabled(self.isAddingToBasket)
                                     }
                                     
                                 }

@@ -60,20 +60,76 @@ class AuthViewModel: ObservableObject{
         }
     }
 
-    
-    func addToBasket(itemId: String, quantity: Int) {
-        guard let userId = self.userSession?.uid else { return }
+//
+//    func addToBasket(itemId: String, quantity: Int) {
+//        guard let userId = self.userSession?.uid else { return }
+//        let userBasketRef = Firestore.firestore().collection("user").document(userId).collection("basket")
+//
+//        userBasketRef.document(itemId).setData(["quantity": quantity]) { error in
+//            if let error = error {
+//                print("Error adding item to basket: \(error.localizedDescription)")
+//            } else {
+//                print("Item added to basket successfully.")
+//                // Here you may want to fetch the updated basket and update the UI accordingly
+//            }
+//        }
+//    }
+    func addToBasket(itemId: String, completion: @escaping (Bool, Error?) -> Void) {
+        guard let userId = userSession?.uid else {
+            completion(false, nil)
+            return
+        }
+        
         let userBasketRef = Firestore.firestore().collection("user").document(userId).collection("basket")
+        
+        userBasketRef.whereField("itemId", isEqualTo: itemId).getDocuments { (querySnapshot, err) in
+            if let err = err {
+                print("Error checking for duplicates: \(err.localizedDescription)")
+                completion(false, err)
+                return
+            }
 
-        userBasketRef.document(itemId).setData(["quantity": quantity]) { error in
-            if let error = error {
-                print("Error adding item to basket: \(error.localizedDescription)")
-            } else {
-                print("Item added to basket successfully.")
-                // Here you may want to fetch the updated basket and update the UI accordingly
+            // Check if any documents are returned with the same itemId, which means a duplicate exists
+            if let documents = querySnapshot?.documents, !documents.isEmpty {
+                // We found a document with the same itemId, which means it's already in the basket
+                print("Item is already in the basket.")
+                completion(false, nil)
+                return
+            }
+            
+            // No documents found with the itemId, safe to add it to the basket
+            let newDocumentRef = userBasketRef.document() // Firestore generates a new document ID
+            newDocumentRef.setData(["itemId": itemId]) { error in
+                if let error = error {
+                    print("Error adding item to basket: \(error.localizedDescription)")
+                    completion(false, error)
+                } else {
+                    print("Item added to basket successfully.")
+                    completion(true, nil)
+                }
             }
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
 
     
     func signIn(withEmail email: String, password: String) async throws{
@@ -185,25 +241,7 @@ extension AuthViewModel {
         
         return user
     }
-    
-    func addToBasket(itemId: String, completion: @escaping (Bool, Error?) -> Void) {
-        guard let userId = userSession?.uid else { return }
-        let userBasketRef = Firestore.firestore().collection("user").document(userId).collection("basket")
 
-        // Create an object for the basket item
-        let basketItem = ["itemId": itemId]
-
-        // Adding the item to the basket collection
-        userBasketRef.addDocument(data: basketItem) { error in
-            if let error = error {
-                print("Error adding item to basket: \(error.localizedDescription)")
-                completion(false, error)
-            } else {
-                print("Item added to basket successfully.")
-                completion(true, nil)
-            }
-        }
-    }
 
     func removeFromBasket(basketItemId: String, completion: @escaping (Bool, Error?) -> Void) {
         guard let userId = userSession?.uid else { return }
