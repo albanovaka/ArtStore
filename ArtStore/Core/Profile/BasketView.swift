@@ -78,7 +78,7 @@ struct BasketView: View {
                         .font(.title)
                         .padding()
                     Spacer()
-                    NavigationLink(destination: CheckoutView(), label: {
+                    NavigationLink(destination: CheckoutView(basketItemsViewModel: basketItemsViewModel), label: {
                         Text("Checkout")
                             .font(.headline)
                             .foregroundColor(.white)

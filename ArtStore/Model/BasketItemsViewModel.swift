@@ -11,7 +11,7 @@ import FirebaseFirestore
 class BasketItemsViewModel: ObservableObject {
     @Published var basketItems: [Item] = []
     @Published var totalPrice: Double = 0.0
-    private var authViewModel: AuthViewModel
+    var authViewModel: AuthViewModel
 
     init(authViewModel: AuthViewModel) {
         self.authViewModel = authViewModel
@@ -48,25 +48,36 @@ class BasketItemsViewModel: ObservableObject {
             }
         }
     }
-//    @MainActor
-//    func decreaseQuantity(index: Int) {
-//        guard basketItems.indices.contains(index),
-//              let itemId = basketItems[index].id,
-//              let currentQuantity = basketItems[index].quantity, currentQuantity > 1 else { return }
-//
-//        authViewModel.removeFromBasket(itemId: itemId) { success, error in
-//            if success {
-//                // Decrease quantity locally for immediate UI update
-//                DispatchQueue.main.async {
-//                    self.basketItems[index].quantity = currentQuantity - 1
-//                    self.calculateTotalPrice()
-//                }
-//            } else if let error = error {
-//                // Handle any errors here
-//                print("Error decreasing quantity: \(error.localizedDescription)")
-//            }
-//        }
-//    }
+    func saveAddressForUser(userId: String, address: [String: Any], completion: @escaping (Bool, Error?) -> Void) {
+            let userRef = db.collection("user").document(userId)
+            userRef.setData(["address": address], merge: true) { error in
+                if let error = error {
+                    print("Error saving address: \(error.localizedDescription)")
+                    completion(false, error)
+                } else {
+                    print("Address saved successfully.")
+                    completion(true, nil)
+                }
+            }
+        }
+
+        func savePastPurchaseForUser(userId: String, items: [Item], completion: @escaping (Bool, Error?) -> Void) {
+            let pastPurchasesRef = db.collection("user").document(userId).collection("pastPurchases")
+            let purchaseData: [String: Any] = [
+                "items": items.map { ["id": $0.id, "name": $0.name, "price": $0.price, "quantity": $0.quantity] },
+                "purchaseDate": FieldValue.serverTimestamp()
+            ]
+            
+            pastPurchasesRef.addDocument(data: purchaseData) { error in
+                if let error = error {
+                    print("Error saving past purchase: \(error.localizedDescription)")
+                    completion(false, error)
+                } else {
+                    print("Past purchase saved successfully.")
+                    completion(true, nil)
+                }
+            }
+        }
 
     @MainActor
     func decreaseQuantity(index: Int) {
@@ -104,7 +115,19 @@ class BasketItemsViewModel: ObservableObject {
             }
         }
     }
-
+    
+    var gst: Double {
+        return totalPrice * 0.05
+    }
+    
+    var qst: Double {
+        return totalPrice * 0.09975
+    }
+    
+    var totalWithTaxes: Double {
+        return totalPrice + gst + qst
+    }
+    
     func fetchBasketItems(userId: String) {
         self.basketItems.removeAll()
         let userBasketRef = db.collection("user").document(userId).collection("basket")
