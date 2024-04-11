@@ -54,4 +54,12 @@ April 9th.
 - a button for checkout which brings you to a view where your address can be added (database address has to be added)
 - checkout
 
-3. Still need to check the api for payment. 
+3. Still need to check the api for payment.
+
+April 10th
+1.a function to display the total of the purchase
+- I was able to complete purchase in a way that it would be stored in the database and erase the basket and data for checkout, though I wasn't able to make the payment API work
+
+2. presentation
+
+3. Still need to learn a lot with IOS dev

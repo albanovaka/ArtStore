@@ -58,7 +58,7 @@ struct CheckoutView: View {
             Section {
                 ForEach(basketItemsViewModel.basketItems) { item in
                     HStack {
-                        Text(item.name ?? "Unknown Product")
+                        Text(item.name )
                         Spacer()
                         Text("\(item.quantity ?? 0)x")
                         Text("$\(item.price ?? 0.0, specifier: "%.2f")")

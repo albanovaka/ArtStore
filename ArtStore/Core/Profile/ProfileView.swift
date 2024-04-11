@@ -34,6 +34,12 @@ struct ProfileView: View {
                 Section ("General") {
                     SettingsRowView (imageName: "gear", title: "Version", tintColor: Color(.systemGray))
                 }
+                Section {
+                    NavigationLink(destination: PastPurchasesView(authViewModel: viewModel)) {
+                        Text("View Past Purchases")
+                    }
+                }
+                
                 
                 Section ("Account" ) {
                     Button {
@@ -42,6 +48,7 @@ struct ProfileView: View {
                         SettingsRowView (imageName: "arrow.left.circle.fill",
                                          title: "Sign Out", tintColor: .red)
                     }
+                    
                     Button {
                         print ("Delete account")
                     } label: {

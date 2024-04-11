@@ -15,6 +15,8 @@
 		9C4B3A712BC1DAB600C17FA7 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 9C4B3A702BC1DAB600C17FA7 /* GoogleSignIn */; };
 		9C4B3A732BC1DAB600C17FA7 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9C4B3A722BC1DAB600C17FA7 /* GoogleSignInSwift */; };
 		9C4B3A762BC1ED5A00C17FA7 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B3A752BC1ED5A00C17FA7 /* Utilities.swift */; };
+		9C5848502BC7F81D009FE45E /* PastPurchasesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C58484F2BC7F81D009FE45E /* PastPurchasesView.swift */; };
+		9C5848542BC7F870009FE45E /* PastPurchaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5848532BC7F870009FE45E /* PastPurchaseViewModel.swift */; };
 		9C7B65912BC3284A00D95436 /* itemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7B65902BC3284A00D95436 /* itemDetailView.swift */; };
 		9C7B65932BC32D9700D95436 /* FavUserItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7B65922BC32D9700D95436 /* FavUserItemView.swift */; };
 		9C7B65952BC32DB400D95436 /* BasketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7B65942BC32DB400D95436 /* BasketView.swift */; };
@@ -48,6 +50,8 @@
 		9C4B3A652BC0360500C17FA7 /* ItemsGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsGridView.swift; sourceTree = "<group>"; };
 		9C4B3A6D2BC1D1BD00C17FA7 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		9C4B3A752BC1ED5A00C17FA7 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		9C58484F2BC7F81D009FE45E /* PastPurchasesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastPurchasesView.swift; sourceTree = "<group>"; };
+		9C5848532BC7F870009FE45E /* PastPurchaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastPurchaseViewModel.swift; sourceTree = "<group>"; };
 		9C7B65902BC3284A00D95436 /* itemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itemDetailView.swift; sourceTree = "<group>"; };
 		9C7B65922BC32D9700D95436 /* FavUserItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavUserItemView.swift; sourceTree = "<group>"; };
 		9C7B65942BC32DB400D95436 /* BasketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketView.swift; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 				9CB71F062BBF08D6001AF1A0 /* User.swift */,
 				9CA4CD972BC38750000AF481 /* FavItemsViewModel.swift */,
 				9CA4CD9F2BC4E911000AF481 /* BasketItemsViewModel.swift */,
+				9C5848532BC7F870009FE45E /* PastPurchaseViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -224,6 +229,7 @@
 				9C7B65922BC32D9700D95436 /* FavUserItemView.swift */,
 				9C7B65942BC32DB400D95436 /* BasketView.swift */,
 				9CA4CDA12BC6EBD3000AF481 /* CheckoutView.swift */,
+				9C58484F2BC7F81D009FE45E /* PastPurchasesView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -333,6 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C7B65952BC32DB400D95436 /* BasketView.swift in Sources */,
+				9C5848502BC7F81D009FE45E /* PastPurchasesView.swift in Sources */,
 				9CB71EFB2BBE047B001AF1A0 /* LoginView.swift in Sources */,
 				9CB71EFD2BBE0638001AF1A0 /* InputView.swift in Sources */,
 				9CA4CDA02BC4E911000AF481 /* BasketItemsViewModel.swift in Sources */,
@@ -352,6 +359,7 @@
 				9CA4CD9A2BC4A7A6000AF481 /* ImageServices.swift in Sources */,
 				9CB71F052BBF0298001AF1A0 /* SettingsRowView.swift in Sources */,
 				9CB71F1C2BBF2DC0001AF1A0 /* AuthViewModel.swift in Sources */,
+				9C5848542BC7F870009FE45E /* PastPurchaseViewModel.swift in Sources */,
 				9C7B65932BC32D9700D95436 /* FavUserItemView.swift in Sources */,
 				9CA4CD982BC38750000AF481 /* FavItemsViewModel.swift in Sources */,
 			);
