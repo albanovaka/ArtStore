@@ -145,6 +145,15 @@
       }
     },
     {
+      "identity" : "stripe-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/stripe/stripe-ios",
+      "state" : {
+        "branch" : "master",
+        "revision" : "7d58afd15c438af9cde8d9a5cb6b63288f25c75d"
+      }
+    },
+    {
       "identity" : "swift-protobuf",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-protobuf.git",

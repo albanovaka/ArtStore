@@ -309,6 +309,7 @@
 				9CB71F0C2BBF24AE001AF1A0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				9C4B3A672BC03C0F00C17FA7 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				9C4B3A6F2BC1DAB600C17FA7 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				9CD76CEB2BC8603800C3F611 /* XCRemoteSwiftPackageReference "stripe-ios" */,
 			);
 			productRefGroup = 9CB71EE22BBDFFA0001AF1A0 /* Products */;
 			projectDirPath = "";
@@ -588,6 +589,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 10.0.0;
+			};
+		};
+		9CD76CEB2BC8603800C3F611 /* XCRemoteSwiftPackageReference "stripe-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stripe/stripe-ios";
+			requirement = {
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
