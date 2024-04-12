@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Stripe
 
 struct CheckoutView: View {
     @ObservedObject var basketItemsViewModel: BasketItemsViewModel
@@ -103,7 +104,8 @@ struct CheckoutView: View {
                 "zipCode": zipCode,
                 "country": country
             ]
-            
+            createPaymentIntent(totalPrice: Int(basketItemsViewModel.totalWithTaxes * 100))
+                    
             let userId = basketItemsViewModel.authViewModel.currentUser?.id
             
             basketItemsViewModel.saveAddressForUser(userId: userId!, address: addressData) { success, error in
@@ -129,6 +131,48 @@ struct CheckoutView: View {
             showingPlaceOrderError = true
         }
     }
+    
+    // Add this function in your CheckoutView
+    private func createPaymentIntent(totalPrice: Int) {
+        // Convert the total price to the smallest currency unit
+        let priceInCents = totalPrice * 100
+        
+        // Your server endpoint URL
+        let url = URL(string: "https://your-glitch-project.glitch.me/create-payment-intent")!
+        
+        // Create the URLRequest object
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        // Set the request body
+        let json: [String: Any] = ["totalPrice": priceInCents]
+        let jsonData = try? JSONSerialization.data(withJSONObject: json)
+        request.httpBody = jsonData
+        
+        // Perform the request
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let data = data,
+                  let jsonResponse = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+                  let clientSecret = jsonResponse["clientSecret"] as? String else {
+                print("Invalid response from server.")
+                return
+            }
+            
+            // Use the clientSecret to finish the payment process
+            print("Received client secret: \(clientSecret)")
+            
+            // Here you would typically pass the clientSecret to your payment handling logic
+            // which would use Stripe's SDK to confirm the payment on the client-side.
+            
+        }.resume()
+    }
+
     
     private func validateFields() -> Bool {
         invalidFields.removeAll()

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		9C4B3A632BC035AA00C17FA7 /* ItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B3A622BC035AA00C17FA7 /* ItemsViewModel.swift */; };
 		9C4B3A662BC0360500C17FA7 /* ItemsGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B3A652BC0360500C17FA7 /* ItemsGridView.swift */; };
-		9C4B3A692BC03C0F00C17FA7 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9C4B3A682BC03C0F00C17FA7 /* Kingfisher */; };
 		9C4B3A6C2BC1B64900C17FA7 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9C4B3A6B2BC1B64900C17FA7 /* FirebaseStorage */; };
 		9C4B3A6E2BC1D1BD00C17FA7 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B3A6D2BC1D1BD00C17FA7 /* UIColor+Extensions.swift */; };
 		9C4B3A712BC1DAB600C17FA7 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 9C4B3A702BC1DAB600C17FA7 /* GoogleSignIn */; };
@@ -87,7 +86,6 @@
 				9CB71F122BBF24AE001AF1A0 /* FirebaseFirestore in Frameworks */,
 				9C4B3A732BC1DAB600C17FA7 /* GoogleSignInSwift in Frameworks */,
 				9CB71F142BBF24AE001AF1A0 /* FirebaseFirestoreSwift in Frameworks */,
-				9C4B3A692BC03C0F00C17FA7 /* Kingfisher in Frameworks */,
 				9C4B3A6C2BC1B64900C17FA7 /* FirebaseStorage in Frameworks */,
 				9C4B3A712BC1DAB600C17FA7 /* GoogleSignIn in Frameworks */,
 			);
@@ -272,7 +270,6 @@
 				9CB71F0F2BBF24AE001AF1A0 /* FirebaseAuthCombine-Community */,
 				9CB71F112BBF24AE001AF1A0 /* FirebaseFirestore */,
 				9CB71F132BBF24AE001AF1A0 /* FirebaseFirestoreSwift */,
-				9C4B3A682BC03C0F00C17FA7 /* Kingfisher */,
 				9C4B3A6B2BC1B64900C17FA7 /* FirebaseStorage */,
 				9C4B3A702BC1DAB600C17FA7 /* GoogleSignIn */,
 				9C4B3A722BC1DAB600C17FA7 /* GoogleSignInSwift */,
@@ -602,11 +599,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9C4B3A682BC03C0F00C17FA7 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9C4B3A672BC03C0F00C17FA7 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
 		9C4B3A6B2BC1B64900C17FA7 /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9CB71F0C2BBF24AE001AF1A0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
