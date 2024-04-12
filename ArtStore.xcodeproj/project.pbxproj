@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C339F1D2BC9945A0017894C /* Stripe in Frameworks */ = {isa = PBXBuildFile; productRef = 9C339F1C2BC9945A0017894C /* Stripe */; };
 		9C4B3A632BC035AA00C17FA7 /* ItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B3A622BC035AA00C17FA7 /* ItemsViewModel.swift */; };
 		9C4B3A662BC0360500C17FA7 /* ItemsGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B3A652BC0360500C17FA7 /* ItemsGridView.swift */; };
 		9C4B3A6C2BC1B64900C17FA7 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9C4B3A6B2BC1B64900C17FA7 /* FirebaseStorage */; };
@@ -86,6 +87,7 @@
 				9CB71F122BBF24AE001AF1A0 /* FirebaseFirestore in Frameworks */,
 				9C4B3A732BC1DAB600C17FA7 /* GoogleSignInSwift in Frameworks */,
 				9CB71F142BBF24AE001AF1A0 /* FirebaseFirestoreSwift in Frameworks */,
+				9C339F1D2BC9945A0017894C /* Stripe in Frameworks */,
 				9C4B3A6C2BC1B64900C17FA7 /* FirebaseStorage in Frameworks */,
 				9C4B3A712BC1DAB600C17FA7 /* GoogleSignIn in Frameworks */,
 			);
@@ -273,6 +275,7 @@
 				9C4B3A6B2BC1B64900C17FA7 /* FirebaseStorage */,
 				9C4B3A702BC1DAB600C17FA7 /* GoogleSignIn */,
 				9C4B3A722BC1DAB600C17FA7 /* GoogleSignInSwift */,
+				9C339F1C2BC9945A0017894C /* Stripe */,
 			);
 			productName = ArtStore;
 			productReference = 9CB71EE12BBDFFA0001AF1A0 /* ArtStore.app */;
@@ -599,6 +602,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9C339F1C2BC9945A0017894C /* Stripe */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9CD76CEB2BC8603800C3F611 /* XCRemoteSwiftPackageReference "stripe-ios" */;
+			productName = Stripe;
+		};
 		9C4B3A6B2BC1B64900C17FA7 /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9CB71F0C2BBF24AE001AF1A0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

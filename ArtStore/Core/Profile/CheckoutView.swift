@@ -138,7 +138,7 @@ struct CheckoutView: View {
         let priceInCents = totalPrice * 100
         
         // Your server endpoint URL
-        let url = URL(string: "https://your-glitch-project.glitch.me/create-payment-intent")!
+        let url = URL(string: "https://candle-spiced-angelfish.glitch.me/create-payment-intent")!
         
         // Create the URLRequest object
         var request = URLRequest(url: url)
