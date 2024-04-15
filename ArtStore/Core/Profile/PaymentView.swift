@@ -10,6 +10,10 @@ import Stripe
 
 struct PaymentView: View {
     @ObservedObject var basketItemsViewModel: BasketItemsViewModel
+    
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var viewRouter: ViewRouter
+    
     @State private var paymentMethodParams: STPPaymentMethodParams?
     @State private var cardNumber: String = ""
     @State private var expirationDate: String = ""
@@ -109,7 +113,16 @@ struct PaymentView: View {
                     self.basketItemsViewModel.basketItems.removeAll()
                     self.basketItemsViewModel.totalPrice = 0
                 }
+                
                 print("Order finalized successfully")
+                DispatchQueue.main.async {
+                    self.presentationMode.wrappedValue.dismiss()
+                    self.viewRouter.showPaymentConfirmation = true
+                    self.viewRouter.showCheckout = false
+                    
+                    basketItemsViewModel.paymentConfirmationMessage = "Your transaction id is \(PaymentConfig.shared.paymentIntendId)"
+                }
+                
             } else {
                 // Handle the error scenario
                 if let error = error {
@@ -180,7 +193,7 @@ struct PaymentView: View {
                   if let jsonResponse = try JSONSerialization.jsonObject(with: data) as? [String: Any] {
                       if let success = jsonResponse["success"] as? Bool, success == true,
                          let paymentIntentId = jsonResponse["paymentIntentId"] as? String {
-                          print(paymentIntentId)
+                              PaymentConfig.shared.paymentIntendId = paymentIntentId
                                              completion(success)
                       } else if let error = jsonResponse["error"] as? String {
                           print("Error from server: \(error)")

@@ -10,8 +10,11 @@ struct User: Identifiable, Codable {
     let id: String
     let fullname: String
     let email: String
-    var favorites: [String] // This would be an array of favorite item IDs.
-    var basket: [BasketItem] // This could be an array of basket items with more detail.
+    var favorites: [String] 
+    var basket: [BasketItem]
+    var address: Address?
+    
+    
     
     var initials: String {
         let formatter = PersonNameComponentsFormatter()
@@ -21,6 +24,14 @@ struct User: Identifiable, Codable {
         }
         return ""
     }
+}
+
+struct Address: Codable {
+    let name: String
+    let streetAddress: String
+    let city: String
+    let zipCode: String
+    let country: String
 }
 
 struct BasketItem: Codable {

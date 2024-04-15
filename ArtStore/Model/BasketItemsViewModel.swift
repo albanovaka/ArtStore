@@ -11,6 +11,7 @@ import FirebaseFirestore
 class BasketItemsViewModel: ObservableObject {
     @Published var basketItems: [Item] = []
     @Published var totalPrice: Double = 0.0
+    @Published var paymentConfirmationMessage: String? = nil
     var authViewModel: AuthViewModel
 
     init(authViewModel: AuthViewModel) {
@@ -49,7 +50,7 @@ class BasketItemsViewModel: ObservableObject {
         }
     }
     func saveAddressForUser(userId: String, address: [String: Any], completion: @escaping (Bool, Error?) -> Void) {
-            let userRef = db.collection("user").document(userId)
+        let userRef = db.collection("user").document(userId)
             userRef.setData(["address": address], merge: true) { error in
                 if let error = error {
                     print("Error saving address: \(error.localizedDescription)")
@@ -228,6 +229,7 @@ class BasketItemsViewModel: ObservableObject {
                     print("Error removing basket items: \(err.localizedDescription)")
                 } else {
                     print("All basket items removed successfully")
+                    self.paymentConfirmationMessage = "Payment successful. ID: \(PaymentConfig.shared.paymentIntendId ?? "Cannot retrieve transaction ID")"
                 }
                 completion()
             }

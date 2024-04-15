@@ -184,11 +184,21 @@ class AuthViewModel: ObservableObject{
     }
     
     func createUser(withEmail email: String, password: String, fullname: String) async throws{
+//        var userData: [String: Any] = [
+//            "name": ,
+//            "streetAddress": streetAddress,
+//            "city": city,
+//            "zipCode": zipCode,
+//            "country": country
+//        ]
         do{
             let result = try await Auth.auth().createUser (withEmail: email, password: password)
-            let user = User(id: result.user.uid, fullname: fullname, email: email, favorites: [], basket: [])
+            let changeRequest = result.user.createProfileChangeRequest()
+                    changeRequest.displayName = fullname
+                    try await changeRequest.commitChanges()
+            let user = User(id: result.user.uid, fullname: fullname, email: email, favorites: [], basket: [], address: nil)
             let encodedUser = try Firestore.Encoder().encode (user)
-            try await Firestore.firestore().collection("user").document(user.id).setData(encodedUser)
+            try await Firestore.firestore().collection("user").document(user.id).setData(encodedUser, merge: true)
         }catch{
             print("ghfgj")
         }
@@ -252,7 +262,7 @@ class AuthViewModel: ObservableObject{
         userData["email"] = auth.email
         userData["fullname"] = auth.fullname
         
-        try await Firestore.firestore().collection ("user").document(auth.id).setData(userData, merge: false)
+        try await Firestore.firestore().collection ("user").document(auth.id).setData(userData, merge: true)
     }
     
     

@@ -10,6 +10,7 @@ import Stripe
 
 struct CheckoutView: View {
     @ObservedObject var basketItemsViewModel: BasketItemsViewModel
+    @EnvironmentObject var viewRouter: ViewRouter
     
     @State private var name: String = ""
     @State private var streetAddress: String = ""
@@ -20,6 +21,7 @@ struct CheckoutView: View {
     @State private var showingPlaceOrderError = false
     @State private var invalidFields: Set<String> = []
     @State private var showingPaymentSheet = false
+    @State private var showingConfirmation = false
 
     
     var body: some View {
@@ -87,18 +89,18 @@ struct CheckoutView: View {
 
                 Button("Continue to paiment") {
                     saveAddress()
-                    showingPaymentSheet = true
                 }
                 .disabled(basketItemsViewModel.basketItems.isEmpty)
             }
             .navigationTitle("Checkout")
             .sheet(isPresented: $showingPaymentSheet) {
-                        PaymentView(basketItemsViewModel: basketItemsViewModel)
+                PaymentView(basketItemsViewModel: basketItemsViewModel).environmentObject(viewRouter)
                     }
             .navigationBarTitleDisplayMode(.inline)
             
       //  }
     }
+    
     private func saveAddress() {
         if validateFields() {
             showingPlaceOrderError = false
@@ -129,6 +131,7 @@ struct CheckoutView: View {
         } else{
             showingPlaceOrderError = true
         }
+        showingPaymentSheet = true
     }
 
     // Add this function in your CheckoutView

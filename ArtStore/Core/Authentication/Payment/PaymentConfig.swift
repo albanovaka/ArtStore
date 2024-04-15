@@ -8,6 +8,8 @@
 import Foundation
 class PaymentConfig {
     var paymentIntentClientSecret: String?
+    var paymentIntendId: String?
+    var paymentSucceeded: Bool = false
     static var shared: PaymentConfig = PaymentConfig ()
     private init() { }
 }

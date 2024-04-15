@@ -3,13 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		9C339F1D2BC9945A0017894C /* Stripe in Frameworks */ = {isa = PBXBuildFile; productRef = 9C339F1C2BC9945A0017894C /* Stripe */; };
 		9C415AB12BCB274F00372530 /* PaymentConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C415AB02BCB274F00372530 /* PaymentConfig.swift */; };
 		9C415AB32BCB29B900372530 /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C415AB22BCB29B900372530 /* PaymentView.swift */; };
+		9C415AB52BCC95C500372530 /* PaymentConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C415AB42BCC95C500372530 /* PaymentConfirmationView.swift */; };
+		9C415AB72BCC962900372530 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C415AB62BCC962900372530 /* ViewRouter.swift */; };
 		9C4B3A632BC035AA00C17FA7 /* ItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B3A622BC035AA00C17FA7 /* ItemsViewModel.swift */; };
 		9C4B3A662BC0360500C17FA7 /* ItemsGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B3A652BC0360500C17FA7 /* ItemsGridView.swift */; };
 		9C4B3A6C2BC1B64900C17FA7 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9C4B3A6B2BC1B64900C17FA7 /* FirebaseStorage */; };
@@ -50,6 +52,8 @@
 /* Begin PBXFileReference section */
 		9C415AB02BCB274F00372530 /* PaymentConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentConfig.swift; sourceTree = "<group>"; };
 		9C415AB22BCB29B900372530 /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
+		9C415AB42BCC95C500372530 /* PaymentConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentConfirmationView.swift; sourceTree = "<group>"; };
+		9C415AB62BCC962900372530 /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
 		9C4B3A622BC035AA00C17FA7 /* ItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewModel.swift; sourceTree = "<group>"; };
 		9C4B3A652BC0360500C17FA7 /* ItemsGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsGridView.swift; sourceTree = "<group>"; };
 		9C4B3A6D2BC1D1BD00C17FA7 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
@@ -129,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				9C4B3A752BC1ED5A00C17FA7 /* Utilities.swift */,
+				9C415AB62BCC962900372530 /* ViewRouter.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -244,6 +249,7 @@
 				9CA4CDA12BC6EBD3000AF481 /* CheckoutView.swift */,
 				9C58484F2BC7F81D009FE45E /* PastPurchasesView.swift */,
 				9C415AB22BCB29B900372530 /* PaymentView.swift */,
+				9C415AB42BCC95C500372530 /* PaymentConfirmationView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -311,7 +317,7 @@
 				};
 			};
 			buildConfigurationList = 9CB71EDC2BBDFFA0001AF1A0 /* Build configuration list for PBXProject "ArtStore" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 15.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -354,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C7B65952BC32DB400D95436 /* BasketView.swift in Sources */,
+				9C415AB52BCC95C500372530 /* PaymentConfirmationView.swift in Sources */,
 				9C5848502BC7F81D009FE45E /* PastPurchasesView.swift in Sources */,
 				9CB71EFB2BBE047B001AF1A0 /* LoginView.swift in Sources */,
 				9CB71EFD2BBE0638001AF1A0 /* InputView.swift in Sources */,
@@ -367,6 +374,7 @@
 				9CA4CD9E2BC4BB94000AF481 /* ToastModifier.swift in Sources */,
 				9C4B3A632BC035AA00C17FA7 /* ItemsViewModel.swift in Sources */,
 				9C7B659B2BC3363000D95436 /* MainTabView.swift in Sources */,
+				9C415AB72BCC962900372530 /* ViewRouter.swift in Sources */,
 				9CA4CDA22BC6EBD3000AF481 /* CheckoutView.swift in Sources */,
 				9C4B3A6E2BC1D1BD00C17FA7 /* UIColor+Extensions.swift in Sources */,
 				9CB71F032BBEF5A0001AF1A0 /* ProfileView.swift in Sources */,

@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct BasketItemRow: View {
+    
     var basketItem: Item
     var index: Int
     var basketViewModel: BasketItemsViewModel
 
     var body: some View {
+        
         HStack {
             if let image = basketItem.image {
                 Image(uiImage: image)
@@ -52,12 +54,14 @@ struct BasketItemRow: View {
             }
             .buttonStyle(BorderlessButtonStyle())
         }
+        
     }
 }
 struct BasketView: View {
     
     @EnvironmentObject var authViewModel: AuthViewModel
     @StateObject var basketItemsViewModel: BasketItemsViewModel
+    @EnvironmentObject var viewRouter: ViewRouter
     
     init(authViewModel: AuthViewModel) {
         _basketItemsViewModel = StateObject(wrappedValue: BasketItemsViewModel(authViewModel: authViewModel))
@@ -65,7 +69,9 @@ struct BasketView: View {
     var body: some View {
         NavigationView {
             VStack {
-                // The list of items
+                if viewRouter.showPaymentConfirmation {
+                    PaymentConfirmationView()
+                }
                 List {
                     ForEach(Array(basketItemsViewModel.basketItems.enumerated()), id: \.element.id) { index, item in
                                             BasketItemRow(basketItem: item, index: index, basketViewModel: basketItemsViewModel)
@@ -78,15 +84,25 @@ struct BasketView: View {
                         .font(.title)
                         .padding()
                     Spacer()
-                    NavigationLink(destination: CheckoutView(basketItemsViewModel: basketItemsViewModel), label: {
-                        Text("Checkout")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(height: 50)
-                            .background(Color.blue)
-                            .cornerRadius(8)
-                    })
+//                    NavigationLink(destination: CheckoutView(basketItemsViewModel: basketItemsViewModel), label: {
+//                        Text("Checkout")
+//                            .font(.headline)
+//                            .foregroundColor(.white)
+//                            .padding()
+//                            .frame(height: 50)
+//                            .background(Color.blue)
+//                            .cornerRadius(8)
+//                    })
+                    Button("Checkout") {
+                        // Set a condition or update a state before navigating
+                        self.viewRouter.showCheckout = true
+                    }
+                    .background(
+                        NavigationLink(destination: CheckoutView(basketItemsViewModel: basketItemsViewModel), isActive: $viewRouter.showCheckout) {
+                            EmptyView()
+                        }
+                    )
+
                     Spacer()
                 }
                 .background(Color.clear)

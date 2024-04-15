@@ -37,11 +37,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct ArtStoreApp: App {
     @StateObject var viewModel = AuthViewModel()
+    @StateObject var viewRouter = ViewRouter()
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(viewModel)
+                .environmentObject(viewRouter)
         }
     }
 }
